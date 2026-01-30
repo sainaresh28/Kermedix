@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+@layer base {
+  :root {
+    /* Black & White Professional Theme - HSL Format */
+    --background: 0 0% 100%; /* Pure white background */
+    --foreground: 0 0% 0%; /* Black text */
+
+    --card: 0 0% 100%; /* White cards */
+    --card-foreground: 0 0% 0%; /* Black text on cards */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    /* Primary Black Theme */
+    --primary: 0 0% 0%; /* Black */
+    --primary-foreground: 0 0% 100%; /* White text on black */
+
+    /* Secondary grayscale */
+    --secondary: 0 0% 96%; /* Light gray */
+    --secondary-foreground: 0 0% 0%; /* Black text */
+
+    --muted: 0 0% 98%; /* Very light gray */
+    --muted-foreground: 0 0% 45%; /* Medium gray text */
+
+    --accent: 0 0% 0%; /* Black accent */
+    --accent-foreground: 0 0% 100%;
+
+    /* Status colors - grayscale */
+    --destructive: 0 0% 20%; /* Dark gray */
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 0 0% 31%; /* Medium-dark gray */
+    --success-foreground: 0 0% 100%;
+
+    --warning: 0 0% 39%; /* Medium gray */
+    --warning-foreground: 0 0% 100%;
+
+    /* Form and interaction elements */
+    --border: 0 0% 90%; /* Light gray borders */
+    --input: 0 0% 98%; /* Light gray input backgrounds */
+    --ring: 0 0% 0%; /* Black focus rings */
+
+    --radius: 0.5rem;
+
+    /* Black & White specific design tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(0 0% 0%) 0%, hsl(0 0% 20%) 50%, hsl(0 0% 0%) 100%);
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --card-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    /* Sidebar tokens */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 0 0% 0%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 98%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 0 0% 0%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 63%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
+    --border: 0 0% 16%;
+    --input: 0 0% 7%;
+    --ring: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* Black & White professional components */
+  .hero-gradient {
+    background: var(--hero-gradient);
+  }
+  
+  .card-shadow {
+    box-shadow: var(--card-shadow);
+  }
+  
+  .card-shadow-lg {
+    box-shadow: var(--card-shadow-lg);
+  }
+  
+  /* Professional form styles */
+  .professional-form {
+    @apply bg-white p-8 rounded-xl shadow-lg border-2 border-black;
+  }
+  
+  .healthcare-form {
+    @apply bg-white p-8 rounded-xl shadow-lg border-2 border-black;
+  }
+  
+  .form-input {
+    @apply w-full px-4 py-3 rounded-lg border-2 border-black bg-white focus:ring-2 focus:ring-black focus:border-black transition-all duration-200;
+  }
+  
+  /* Professional table styles */
+  .data-table {
+    @apply w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm border-2 border-black;
+  }
+  
+  .data-table th {
+    @apply bg-black text-white px-6 py-4 text-left font-semibold border-b-2 border-black;
+  }
+  
+  .data-table td {
+    @apply px-6 py-4 border-b border-gray-300 last:border-b-0;
+  }
+  
+  .healthcare-table {
+    @apply w-full border-collapse bg-white rounded-lg overflow-hidden;
+  }
+  
+  .healthcare-table th {
+    @apply bg-black text-white px-6 py-4 text-left font-semibold border-b-2 border-black;
+  }
+  
+  .healthcare-table td {
+    @apply px-6 py-4 border-b border-gray-300 last:border-b-0;
+  }
+  
+  /* Professional button styles */
+  .btn-primary {
+    @apply bg-black text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-gray-900 hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-black px-6 py-3 rounded-lg font-medium border-2 border-black transition-all duration-200 hover:bg-black hover:text-white;
+  }
+
+  /* Scroll animations */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Interactive elements */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .pulse-border {
+    animation: pulse-border 2s infinite;
+  }
+
+  @keyframes pulse-border {
+    0%, 100% {
+      border-color: hsl(var(--border));
+    }
+    50% {
+      border-color: hsl(var(--foreground));
+    }
+  }
+
+  /* Stats counter animation */
+  .counter-animation {
+    transition: all 0.3s ease;
+  }
+
+  /* Progress bars */
+  .progress-fill {
+    transition: width 1.5s ease-in-out;
+  }
+
+  /* Typing animation */
+  .typing-animation {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--foreground));
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: hsl(var(--foreground)); }
+  }
+
+  /* Floating elements */
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Grid reveal animation */
+  .grid-item {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .grid-item.reveal {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee-news {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Scroll half because items are duplicated */
+}
+
+.animate-marquee-news {
+  animation: marquee-news 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-news:hover {
+  animation-play-state: paused;
+}

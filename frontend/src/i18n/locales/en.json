@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "home": "Home",
+    "records": "Records",
+    "login": "Login",
+    "register": "Register",
+    "about": "About",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "help": "Help"
+  },
+  "home": {
+    "title": "KerMedix Health",
+    "subtitle": "Digital Health Records for Migrant Workers in Kerala",
+    "loginWorker": "Login as Worker",
+    "loginDoctor": "Login as Doctor/Admin",
+    "sdg3Title": "SDG 3: Good Health",
+    "sdg3Text": "Ensuring healthy lives and promoting well-being for all migrant workers at all ages.",
+    "sdg10Title": "SDG 10: Reduced Inequalities", 
+    "sdg10Text": "Reducing inequality within and among communities by providing equal healthcare access.",
+    "sdg16Title": "SDG 16: Strong Institutions",
+    "sdg16Text": "Building effective, accountable and inclusive healthcare institutions at all levels."
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "forgotPassword": "Forgot Password",
+    "workerLogin": "Worker Login",
+    "doctorLogin": "Doctor/Admin Login",
+    "username": "Username",
+    "workerId": "Worker ID",
+    "password": "Password",
+    "email": "Email",
+    "name": "Name",
+    "age": "Age",
+    "gender": "Gender",
+    "contact": "Contact Info",
+    "backToHome": "Back to Home",
+    "resetPassword": "Reset Password"
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "healthRecords": "Health Records",
+    "addRecord": "Add Record",
+    "profile": "Profile",
+    "logout": "Logout",
+    "overview": "Overview",
+    "patients": "Patients",
+    "analytics": "Analytics"
+  },
+  "common": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "download": "Download",
+    "export": "Export"
+  }
+}
