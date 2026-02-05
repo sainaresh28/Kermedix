@@ -119,7 +119,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="min-h-[85vh] bg-[#F9EFE3] py-20">
+    <div className="min-h-[85vh] bg-[#FFFDF5] py-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
      <div className="text-center mt-10 mb-14">

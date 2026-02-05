@@ -1,123 +1,317 @@
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { BookOpen, ClipboardCheck, AlertCircle, Info, Phone } from "lucide-react";
+import {
+  BookOpen,
+  ClipboardCheck,
+  AlertTriangle,
+  Info,
+  Phone,
+  CheckCircle,
+  ShieldAlert,
+} from "lucide-react";
+import { motion, type Variants } from "framer-motion";
+import HygieneImg from "@/assets/Guideline.jpg";
 
-const Guidelines = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-black mb-4">Health Guidelines</h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Essential health guidelines and best practices for migrant workers
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            <Card className="border-2 border-black">
-              <CardHeader>
-                <div className="flex items-start gap-4">
-                  <BookOpen className="h-8 w-8 text-black flex-shrink-0" />
-                  <div>
-                    <CardTitle className="text-xl mb-2">General Health and Hygiene</CardTitle>
-                    <CardDescription className="text-base">
-                      <ul className="space-y-2 mt-3">
-                        <li>• Maintain personal hygiene - regular hand washing and bathing</li>
-                        <li>• Use clean drinking water and eat hygienic food</li>
-                        <li>• Ensure proper ventilation in living quarters</li>
-                        <li>• Keep living spaces clean and free from mosquitoes</li>
-                        <li>• Wear clean clothes and use separate towels</li>
-                      </ul>
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-2 border-black">
-              <CardHeader>
-                <div className="flex items-start gap-4">
-                  <ClipboardCheck className="h-8 w-8 text-black flex-shrink-0" />
-                  <div>
-                    <CardTitle className="text-xl mb-2">Regular Health Checkups</CardTitle>
-                    <CardDescription className="text-base">
-                      <ul className="space-y-2 mt-3">
-                        <li>• Annual comprehensive health screening is mandatory</li>
-                        <li>• Get vaccinated as per the immunization schedule</li>
-                        <li>• Monitor blood pressure and blood sugar regularly</li>
-                        <li>• Report any health issues to medical officer immediately</li>
-                        <li>• Keep vaccination records and health documents updated</li>
-                      </ul>
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-2 border-black">
-              <CardHeader>
-                <div className="flex items-start gap-4">
-                  <AlertCircle className="h-8 w-8 text-black flex-shrink-0" />
-                  <div>
-                    <CardTitle className="text-xl mb-2">Workplace Safety Guidelines</CardTitle>
-                    <CardDescription className="text-base">
-                      <ul className="space-y-2 mt-3">
-                        <li>• Always use personal protective equipment (PPE) at work</li>
-                        <li>• Follow safety protocols for machinery and equipment</li>
-                        <li>• Report workplace hazards to supervisors</li>
-                        <li>• Take regular breaks to avoid fatigue and heat stress</li>
-                        <li>• Know emergency procedures and first aid location</li>
-                      </ul>
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-2 border-black">
-              <CardHeader>
-                <div className="flex items-start gap-4">
-                  <Info className="h-8 w-8 text-black flex-shrink-0" />
-                  <div>
-                    <CardTitle className="text-xl mb-2">COVID-19 and Infectious Disease Prevention</CardTitle>
-                    <CardDescription className="text-base">
-                      <ul className="space-y-2 mt-3">
-                        <li>• Wear masks in crowded places and when feeling unwell</li>
-                        <li>• Maintain physical distancing when possible</li>
-                        <li>• Cover mouth while coughing or sneezing</li>
-                        <li>• Stay home if experiencing fever or respiratory symptoms</li>
-                        <li>• Complete COVID-19 vaccination including boosters</li>
-                      </ul>
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-          </div>
-
-          <div className="mt-12 bg-white p-8 rounded-lg border-2 border-black">
-            <h2 className="text-2xl font-bold text-black mb-4">Emergency Contact Numbers</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-4 border-2 border-gray-200 rounded">
-                <h3 className="font-semibold text-black">Health Helpline</h3>
-                <p className="text-2xl font-bold text-black">104</p>
-              </div>
-              <div className="p-4 border-2 border-gray-200 rounded">
-                <h3 className="font-semibold text-black">Ambulance Service</h3>
-                <p className="text-2xl font-bold text-black">108</p>
-              </div>
-              <div className="p-4 border-2 border-gray-200 rounded">
-                <h3 className="font-semibold text-black">Labour Welfare</h3>
-                <p className="text-2xl font-bold text-black">1800-425-1234</p>
-              </div>
-              <div className="p-4 border-2 border-gray-200 rounded">
-                <h3 className="font-semibold text-black">Mental Health Support</h3>
-                <p className="text-2xl font-bold text-black">1800-599-0019</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  );
+/* ---------------- MOTION ---------------- */
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: "easeOut" },
+  },
 };
 
-export default Guidelines;
+export default function Guidelines() {
+  return (
+    <>
+      {/* FONT */}
+      <style>
+        {`
+          @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap");
+
+          .saas {
+            font-family: "Montserrat", system-ui, sans-serif;
+          }
+
+          .h1 {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+          }
+
+          .h2 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+          }
+
+          .body {
+            font-weight: 500;
+            line-height: 1.7;
+          }
+        `}
+      </style>
+
+      <section className="saas min-h-screen bg-transparent pt-24 sm:pt-32 pb-32">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+
+          {/* ================= HERO ================= */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mb-28"
+          >
+            <p className="text-xs uppercase tracking-[0.28em] text-black/60 mb-4">
+              Health & safety guidance
+            </p>
+
+            <h1 className="h1 text-[38px] sm:text-[56px] text-black mb-6">
+              Practical health guidelines
+              <br />for everyday safety
+            </h1>
+
+            <p className="body text-black/70 max-w-2xl">
+              Clear, actionable guidance designed to help migrant workers stay
+              healthy at home, at work, and in public environments.
+            </p>
+          </motion.div>
+
+          {/* ================= HYGIENE — CHECKLIST + VISUAL ================= */}
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mb-28"
+          >
+            <div className="flex items-center gap-4 mb-10">
+              <BookOpen className="h-7 w-7 text-[#FFCC33]" />
+              <h2 className="h2 text-2xl text-black">
+                General health & hygiene
+              </h2>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-14 items-start">
+
+              {/* LEFT — CHECKLIST RAIL */}
+              <div className="relative pl-8 space-y-4">
+                <div className="absolute left-2 top-0 bottom-0 w-[2px] bg-[#FFCC33]" />
+
+                {[
+                  "Maintain personal hygiene with regular hand washing",
+                  "Drink clean water and eat hygienic food",
+                  "Ensure ventilation in living spaces",
+                  "Prevent mosquito breeding",
+                  "Use clean clothing and towels",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-[#FFCC33] mt-1" />
+                    <p className="body text-black/70">{item}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* RIGHT — HYGIENE VISUAL */}
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="relative"
+              >
+                <div
+                  className="
+                    relative rounded-2xl
+                    bg-[#FFF7D6]
+                    border border-black/10
+                    p-4 sm:p-6
+                  "
+                >
+                  {/* subtle depth layer */}
+                  <div
+                    className="
+                      absolute inset-0 translate-x-3 translate-y-3
+                      rounded-2xl bg-[#FFE08A]
+                      border border-black/10
+                      -z-10
+                    "
+                  />
+
+                  <img
+                    src={HygieneImg}
+                    alt="Personal hygiene practices"
+                    className="
+                      w-full h-auto
+                      rounded-xl
+                      object-cover
+                    "
+                  />
+
+                  {/* caption */}
+                  <p className="mt-4 text-sm text-black/60">
+                    Simple hygiene practices significantly reduce illness and infection.
+                  </p>
+                </div>
+              </motion.div>
+
+            </div>
+          </motion.section>
+
+
+          {/* ================= HEALTH CHECKUPS — TIMELINE ================= */}
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mb-28"
+          >
+            <div className="flex items-center gap-4 mb-8">
+              <ClipboardCheck className="h-7 w-7 text-[#FFCC33]" />
+              <h2 className="h2 text-2xl text-black">
+                Regular health checkups
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-5 gap-6">
+              {[
+                "Annual screening",
+                "Vaccinations",
+                "BP & sugar monitoring",
+                "Early reporting",
+                "Record updates",
+              ].map((step, i) => (
+                <div
+                  key={i}
+                  className="relative rounded-xl bg-[#FFF7D6]
+                  border border-black/10 px-4 py-5 text-center"
+                >
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2
+                  h-6 w-6 rounded-full bg-[#FFCC33]
+                  text-black text-xs font-semibold flex items-center justify-center">
+                    {i + 1}
+                  </div>
+                  <p className="body text-black/70 text-sm mt-3">
+                    {step}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* ================= WORKPLACE SAFETY — HAZARD TILES ================= */}
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mb-28"
+          >
+            <div className="flex items-center gap-4 mb-8">
+              <ShieldAlert className="h-7 w-7 text-[#FFCC33]" />
+              <h2 className="h2 text-2xl text-black">
+                Workplace safety
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                "Use PPE at all times",
+                "Follow machinery safety rules",
+                "Report hazards immediately",
+                "Avoid fatigue & heat stress",
+                "Know emergency exits",
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl bg-white
+                  border border-black/10 px-6 py-6
+                  hover:shadow-[0_18px_40px_rgba(0,0,0,0.12)]
+                  transition"
+                >
+                  <AlertTriangle className="h-6 w-6 text-[#FFCC33] mb-3" />
+                  <p className="body text-black/70">{item}</p>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* ================= INFECTIOUS DISEASE — ALERT PANELS ================= */}
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mb-28"
+          >
+            <div className="flex items-center gap-4 mb-8">
+              <Info className="h-7 w-7 text-[#FFCC33]" />
+              <h2 className="h2 text-2xl text-black">
+                Infectious disease prevention
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[
+                "Wear masks in crowded places",
+                "Maintain physical distancing",
+                "Cover coughs and sneezes",
+                "Stay home when unwell",
+                "Complete vaccinations",
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="relative rounded-xl bg-[#FFF7D6]
+                  border border-black/10 px-6 py-5"
+                >
+                  <div className="absolute top-0 left-0 h-full w-[4px]
+                  bg-[#FFCC33] rounded-l-xl" />
+                  <p className="body text-black/70">{item}</p>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* ================= EMERGENCY CONTACTS ================= */}
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="rounded-3xl bg-black px-8 sm:px-14 py-16"
+          >
+            <div className="flex items-center gap-4 mb-10">
+              <Phone className="h-7 w-7 text-[#FFCC33]" />
+              <h2 className="h2 text-[26px] sm:text-[32px] text-white">
+                Emergency contacts
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                ["Health Helpline", "104"],
+                ["Ambulance", "108"],
+                ["Labour Welfare", "1800-425-1234"],
+                ["Mental Health", "1800-599-0019"],
+              ].map(([label, value], i) => (
+                <div
+                  key={i}
+                  className="rounded-xl bg-white/5
+                  border border-white/15 px-6 py-6"
+                >
+                  <p className="text-sm text-white/70 mb-1">
+                    {label}
+                  </p>
+                  <p className="text-2xl font-semibold text-white">
+                    {value}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+
+        </div>
+      </section>
+    </>
+  );
+}

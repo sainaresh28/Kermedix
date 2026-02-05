@@ -44,7 +44,7 @@ export default function ScrollStackFeatures({
   return (
     <section
       ref={ref}
-      className="relative h-[340vh] bg-[#F9EFE3]"
+      className="relative h-[340vh] bg-[#FFFDF5]"
     >
       {/* STICKY PIN */}
       <div className="sticky top-0 h-screen flex justify-center pt-20 perspective-[1200px]">

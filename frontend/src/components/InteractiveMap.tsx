@@ -55,7 +55,7 @@ const { scrollYProgress } = useScroll({
         overflow-visible
         md:overflow-hidden
       "
-      style={{ backgroundColor: "#F9EFE3" }}
+      style={{ backgroundColor: "#FFFDF5" }}
     >
       <div className="relative z-10 max-w-6xl mx-auto px-4">
         {/* Header */}
@@ -196,7 +196,7 @@ const { scrollYProgress } = useScroll({
                         duration-300
                         bg-[#334cf4]
                         border border-[#402EE6]
-                        text-[#F9EFE3]
+                        text-[#FFFDF5]
                         hover:brightness-110
                         hover:scale-[1.01]
                         hover:shadow-[0_12px_30px_rgba(64,46,230,0.45)]
@@ -220,13 +220,13 @@ const { scrollYProgress } = useScroll({
                           </div>
 
                           {/* Stats */}
-                          <div className="flex gap-4 text-sm text-[#F9EFE3]/85">
+                          <div className="flex gap-4 text-sm text-[#FFFDF5]/85">
                             <div className="flex items-center gap-1">
-                              <Users size={14} className="text-[#F9EFE3]" />
+                              <Users size={14} className="text-[#FFFDF5]" />
                               {district.workers}
                             </div>
                             <div className="flex items-center gap-1">
-                              <Building size={14} className="text-[#F9EFE3]" />
+                              <Building size={14} className="text-[#FFFDF5]" />
                               {district.clinics}
                             </div>
                           </div>

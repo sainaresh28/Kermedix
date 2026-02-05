@@ -1,111 +1,275 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Syringe, Shield, Calendar, Bell } from "lucide-react";
+import {
+  Syringe,
+  Shield,
+  Calendar,
+  Bell,
+  CheckCircle,
+} from "lucide-react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+
+/* ---------------- MOTION VARIANTS ---------------- */
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+// Desktop / tablet
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: "easeOut" },
+  },
+};
+
+// Mobile only (left → right)
+const slideInMobile = {
+  hidden: { opacity: 0, x: -32 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.45, ease: "easeOut" },
+  },
+};
 
 const Vaccination = () => {
+  const { scrollYProgress } = useScroll();
+
+  const accentY = useTransform(scrollYProgress, [0, 1], ["0%", "120%"]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.3], [0.15, 0.4]);
+  const glowScale = useTransform(scrollYProgress, [0, 1], [0.9, 1.1]);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-black mb-4">Vaccination Services</h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Comprehensive immunization programs to protect migrant workers from preventable diseases
-            </p>
-          </div>
+    <>
+      {/* FONT */}
+      <style>
+        {`
+          @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap");
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card className="border-2 border-black">
-              <CardHeader>
-                <Syringe className="h-12 w-12 mb-4 text-black" />
-                <CardTitle>Essential Vaccinations</CardTitle>
-                <CardDescription>
-                  Complete coverage of WHO-recommended vaccines including COVID-19, Hepatitis B, Tetanus, and more
-                </CardDescription>
-              </CardHeader>
-            </Card>
+          .saas {
+            font-family: "Montserrat", system-ui, -apple-system,
+              BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          }
 
-            <Card className="border-2 border-black">
-              <CardHeader>
-                <Shield className="h-12 w-12 mb-4 text-black" />
-                <CardTitle>Protection Record</CardTitle>
-                <CardDescription>
-                  Digital vaccination certificate and complete immunization history tracking
-                </CardDescription>
-              </CardHeader>
-            </Card>
+          .saas-h1 {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+          }
 
-            <Card className="border-2 border-black">
-              <CardHeader>
-                <Calendar className="h-12 w-12 mb-4 text-black" />
-                <CardTitle>Scheduled Camps</CardTitle>
-                <CardDescription>
-                  Regular vaccination camps organized at worker accommodation sites
-                </CardDescription>
-              </CardHeader>
-            </Card>
+          .saas-h2 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+          }
 
-            <Card className="border-2 border-black">
-              <CardHeader>
-                <Bell className="h-12 w-12 mb-4 text-black" />
-                <CardTitle>Dose Reminders</CardTitle>
-                <CardDescription>
-                  Automatic reminders for booster doses and follow-up vaccinations
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
+          .saas-body {
+            font-weight: 500;
+            line-height: 1.7;
+          }
+        `}
+      </style>
 
-          <div className="bg-white p-8 rounded-lg border-2 border-black mb-8">
-            <h2 className="text-2xl font-bold text-black mb-6">Available Vaccines</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-4 border-2 border-gray-200 rounded">
-                <h3 className="font-semibold text-black mb-2">COVID-19 Vaccination</h3>
-                <p className="text-sm text-gray-600">Primary doses and booster shots</p>
-              </div>
-              <div className="p-4 border-2 border-gray-200 rounded">
-                <h3 className="font-semibold text-black mb-2">Hepatitis B</h3>
-                <p className="text-sm text-gray-600">3-dose series for liver protection</p>
-              </div>
-              <div className="p-4 border-2 border-gray-200 rounded">
-                <h3 className="font-semibold text-black mb-2">Tetanus</h3>
-                <p className="text-sm text-gray-600">Booster every 10 years</p>
-              </div>
-              <div className="p-4 border-2 border-gray-200 rounded">
-                <h3 className="font-semibold text-black mb-2">Influenza</h3>
-                <p className="text-sm text-gray-600">Annual flu vaccination</p>
-              </div>
-              <div className="p-4 border-2 border-gray-200 rounded">
-                <h3 className="font-semibold text-black mb-2">Typhoid</h3>
-                <p className="text-sm text-gray-600">Protection against typhoid fever</p>
-              </div>
-              <div className="p-4 border-2 border-gray-200 rounded">
-                <h3 className="font-semibold text-black mb-2">Measles-Mumps-Rubella</h3>
-                <p className="text-sm text-gray-600">MMR vaccine for adults</p>
-              </div>
+      <section className="saas relative min-h-screen bg-transparent pt-20 sm:pt-32 pb-24 overflow-hidden">
+
+        {/* Scroll accent */}
+        <motion.div
+          style={{ y: accentY }}
+          className="hidden lg:block absolute left-8 top-0 w-[2px] h-[140px]
+          bg-gradient-to-b from-[#FFCC33]/0 via-[#FFCC33] to-[#FFCC33]/0"
+        />
+
+        {/* Glow */}
+        <motion.div
+          style={{ opacity: glowOpacity, scale: glowScale }}
+          className="absolute -top-48 -right-48
+          h-[360px] w-[360px] sm:h-[420px] sm:w-[420px]
+          rounded-full bg-[#FFCC33]/30 blur-[140px]"
+        />
+
+        <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6">
+
+          {/* ================= HERO ================= */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="max-w-xl sm:max-w-3xl mb-20 sm:mb-24"
+          >
+            <motion.p
+              variants={fadeUp}
+              className="text-[11px] sm:text-xs uppercase tracking-[0.28em]
+              text-black/60 mb-4"
+            >
+              Immunization infrastructure
+            </motion.p>
+
+            <motion.h1
+              variants={fadeUp}
+              className="saas-h1 text-[34px] sm:text-[56px] text-black mb-5"
+            >
+              Vaccination programs,
+              <br />
+              built for continuity & trust.
+            </motion.h1>
+
+            <motion.p
+              variants={fadeUp}
+              className="saas-body text-[15px] sm:text-[18px] text-black/70"
+            >
+              Comprehensive immunization services designed to protect migrant
+              workers from preventable diseases — consistently and reliably.
+            </motion.p>
+          </motion.div>
+
+          {/* ================= CORE FEATURES ================= */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
+            gap-5 sm:gap-8 mb-24"
+          >
+            {[
+              {
+                icon: Syringe,
+                title: "Essential vaccinations",
+                desc: "WHO-recommended vaccines including COVID-19, Hepatitis B, and Tetanus.",
+              },
+              {
+                icon: Shield,
+                title: "Protection record",
+                desc: "Digitally stored certificates and lifelong immunization history.",
+              },
+              {
+                icon: Calendar,
+                title: "Scheduled camps",
+                desc: "On-site vaccination camps near worker accommodations.",
+              },
+              {
+                icon: Bell,
+                title: "Dose reminders",
+                desc: "Automated alerts for booster and follow-up doses.",
+              },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={i}
+                  variants={{
+                    hidden: {
+                      ...(slideInMobile.hidden),
+                      ...(fadeUp.hidden),
+                    },
+                    visible: {
+                      ...(slideInMobile.visible),
+                      ...(fadeUp.visible),
+                    },
+                  }}
+                  className="rounded-2xl bg-[#FFF7D6]
+                  border border-black/10 p-5 sm:p-6
+                  active:scale-[0.98] transition-transform"
+                >
+                  <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-[#FFCC33]
+                  flex items-center justify-center mb-4">
+                    <Icon className="h-5 w-5 text-black" />
+                  </div>
+
+                  <h3 className="font-semibold text-black mb-2">
+                    {item.title}
+                  </h3>
+
+                  <p className="saas-body text-black/65 text-sm">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          {/* ================= AVAILABLE VACCINES ================= */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="mb-24"
+          >
+            <motion.h2
+              variants={fadeUp}
+              className="saas-h2 text-[24px] sm:text-[32px] text-black mb-8"
+            >
+              Available vaccines
+            </motion.h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+              {[
+                ["COVID-19", "Primary doses and booster shots"],
+                ["Hepatitis B", "Three-dose liver protection series"],
+                ["Tetanus", "Booster every 10 years"],
+                ["Influenza", "Annual flu vaccination"],
+                ["Typhoid", "Protection against typhoid fever"],
+                ["MMR", "Measles, mumps, rubella for adults"],
+              ].map(([title, desc], i) => (
+                <motion.div
+                  key={i}
+                  variants={slideInMobile}
+                  className="rounded-xl bg-[#402EE6]/5
+                  border border-black/10 p-4 sm:p-5"
+                >
+                  <h3 className="font-semibold text-black mb-1">
+                    {title}
+                  </h3>
+                  <p className="text-sm text-black/65">
+                    {desc}
+                  </p>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="bg-white p-8 rounded-lg border-2 border-black">
-            <h2 className="text-2xl font-bold text-black mb-4">Free Vaccination Program</h2>
-            <p className="text-gray-700 mb-4">
-              All essential vaccinations are provided free of cost to registered migrant workers under the government health scheme.
+          {/* ================= FREE PROGRAM ================= */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="rounded-3xl bg-black px-6 sm:px-14 py-12 sm:py-16"
+          >
+            <h2 className="saas-h2 text-[24px] sm:text-[32px] text-white mb-5">
+              Free vaccination program
+            </h2>
+
+            <p className="saas-body text-white/80 max-w-2xl mb-8">
+              All essential vaccinations are provided free of cost to registered
+              migrant workers under government-supported health initiatives.
             </p>
-            <ul className="space-y-2">
-              <li className="flex items-start">
-                <span className="font-bold text-black mr-2">•</span>
-                <span className="text-gray-700">No charges for government-approved vaccines</span>
-              </li>
-              <li className="flex items-start">
-                <span className="font-bold text-black mr-2">•</span>
-                <span className="text-gray-700">Digital vaccination certificate issued immediately</span>
-              </li>
-              <li className="flex items-start">
-                <span className="font-bold text-black mr-2">•</span>
-                <span className="text-gray-700">Camp locations near worker accommodations</span>
-              </li>
-            </ul>
-          </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {[
+                "No charges for approved vaccines",
+                "Instant digital vaccination certificate",
+                "Camp locations near worker housing",
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-[#FFCC33] mt-1" />
+                  <p className="saas-body text-white/85 text-sm sm:text-base">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
-      </div>
+      </section>
+    </>
   );
 };
 

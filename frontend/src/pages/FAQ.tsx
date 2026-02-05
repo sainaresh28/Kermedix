@@ -34,7 +34,7 @@ const FAQ = () => {
   return (
     <div
   className="min-h-[80vh] py-16"
-  style={{ backgroundColor: "#F9EFE3" }}
+  style={{ backgroundColor: "#FFFDF5" }}
 >
 
       <div className="max-w-4xl mx-auto px-4">

@@ -2,7 +2,7 @@ const About = () => {
   return (
     <section
       className="min-h-[85vh] pt-28 pb-24"
-      style={{ backgroundColor: "#F9EFE3" }}
+      style={{ backgroundColor: "#FFFDF5" }}
     >
       <div className="max-w-6xl mx-auto px-4">
 
@@ -68,7 +68,7 @@ const About = () => {
                   key={title}
                   className="p-6 rounded-2xl border"
                   style={{
-                    backgroundColor: "#F9EFE3",
+                    backgroundColor: "#FFFDF5",
                     borderColor: "#FFCC33",
                   }}
                 >

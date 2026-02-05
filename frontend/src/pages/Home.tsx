@@ -9,7 +9,7 @@ import FlowingStats from "@/components/FlowingStats";
 import InteractiveMap from "@/components/InteractiveMap";
 import BentoShowcase from "@/components/BentoShowcase";
 import TestimonialSection from "@/components/TestimonialSection";
-
+import ThreeDDeviceShowcase from "@/components/ThreeDDeviceShowcase";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -148,7 +148,7 @@ const handleSubmit = async (e) => {
 
 
   return (
-    <div className="w-full overflow-x-hidden" style={{ backgroundColor: "#F9EFE3" }}>
+    <div className="w-full overflow-x-hidden" style={{ backgroundColor: "#FFFDF5" }}>
 
 
       <HeroSection />
@@ -156,7 +156,7 @@ const handleSubmit = async (e) => {
       <NewsTicker />
 
       {/* ================= MAIN CONTENT ================= */}
-      <section className="py-20" style={{ backgroundColor: "#F9EFE3" }}>
+      <section className="py-20" style={{ backgroundColor: "#FFFDF5" }}>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -288,7 +288,7 @@ const handleSubmit = async (e) => {
                 overflow-hidden
                 rounded-[24px]
                 border-2 border-black
-                bg-[#F9EFE3]
+                bg-[#FFFDF5]
                 p-6
                 text-center
                 shadow-[0_20px_55px_rgba(0,0,0,0.24)]
@@ -354,6 +354,7 @@ const handleSubmit = async (e) => {
       <FlowingStats />
       <ScrollStackShowcase/>
       <BentoShowcase />
+      <ThreeDDeviceShowcase />
       <TestimonialSection />
       <InteractiveMap />
       

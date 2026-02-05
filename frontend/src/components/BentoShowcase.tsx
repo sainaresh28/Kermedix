@@ -31,7 +31,7 @@ const features = [
     title: "Migrant Worker Support",
     desc: "Supportive and intergrated dashboard access",
     icon: Users,
-    bg: "bg-[#F9EFE3]",
+    bg: "bg-[#f5ffc2]",
     text: "text-black",
     type: "bars",
     image: "/images/facility5.png",
@@ -47,7 +47,7 @@ const features = [
   },
   {
     title: "Doctor Dashboard",
-    desc: "Smarter clinical decisions with unified patient views.",
+    desc: "Smarter clinical decisions & unified data.",
     icon: Stethoscope,
     bg: "bg-[#F6C96B]",
     text: "text-black",
@@ -55,7 +55,7 @@ const features = [
     image: "/images/facility3.png",
   },
   {
-    title: "Vaccine Coverage Insights",
+    title: "Vaccine Coverage ",
     desc: "Real-time visibility into vaccination reach and gaps.",
     icon: Hospital,
     bg: "bg-[#f2f2f2]",
@@ -86,7 +86,7 @@ const features = [
     title: "Emergency Alerts",
     desc: "Instant alerts for critical health conditions.",
     icon: AlertCircle,
-    bg: "bg-[#F9EFE3]",
+    bg: "bg-[#edff84]",
     text: "text-black",
     type: "timer",
     image: "/images/hc5.png",
@@ -107,7 +107,7 @@ export default function BentoFeatures() {
       </div>
 
       {/* MAC WINDOW */}
-      <div className="rounded-[22px] md:rounded-[32px] border bg-white shadow-[0_30px_80px_rgba(0,0,0,0.18)] overflow-hidden">
+      <div className="rounded-[22px] md:rounded-[32px] border bg-[#ffffff]  shadow-[0_30px_80px_rgba(0,0,0,0.18)] overflow-hidden">
 
         {/* HEADER BAR */}
         <div className="flex items-center gap-2 px-4 md:px-6 py-3 md:py-4 border-b bg-blue-700">
@@ -162,14 +162,15 @@ export default function BentoFeatures() {
                     className={`relative card ${item.span ?? ""}`}
                   >
 
-
-
-
                   {/* FRONT */}
-                    <div
-                      className={`absolute inset-0 rounded-[22px] md:rounded-[36px] p-4 md:p-8 backface-hidden ${item.bg} ${item.text}
+                   <div
+                      className={`absolute inset-0 rounded-[22px] md:rounded-[36px]
+                      p-4 md:p-8
+                      ${item.type === "languages" ? "pt-8 md:pt-8" : "pt-4 md:pt-8"}
+                      backface-hidden ${item.bg} ${item.text}
                       ${item.type === "growth" ? "flex flex-col" : ""}`}
                     >
+
 
                     {/* ICON */}
                     <Icon className="absolute top-4 md:top-6 right-4 md:right-6 opacity-70 w-6 h-6 md:w-9 md:h-9" />
@@ -194,17 +195,26 @@ export default function BentoFeatures() {
                     </h3>
 
                     {/* DESC */}
-                    <p className="mt-2 md:mt-4 opacity-90 text-xs md:text-base max-w-[90%]">
+                     <p
+                      className={`
+                        mt-2 md:mt-4
+                        opacity-90
+                        text-xs md:text-base
+                        max-w-[90%]
+                        ${item.type === "hero" ? "hidden md:block" : ""}
+                      `}
+                    >
                       {item.desc}
                     </p>
 
-                    {/* HERO CHIPS (desktop only) */}
-                        {item.type === "hero" && (
-                          <div className="hidden md:block absolute bottom-8 left-8 max-w-[90%] space-y-4">
 
-                            {/* HERO CHIPS */}
+                    {/* HERO CHIPS (desktop only) */}
+                       {item.type === "hero" && (
+                        <>
+                          {/* HERO CHIPS — desktop only */}
+                          <div className="hidden md:block absolute bottom-16 left-8 max-w-[90%] space-y-4">
                             <div className="flex flex-wrap gap-4">
-                              {["24/7 Access", "Secure Sync", "Instant Fetch", "Quick Support","Health Analytics"].map((k) => (
+                              {["24/7 Access", "Secure Sync", "Quick Support", "Health Analytics"].map((k) => (
                                 <span
                                   key={k}
                                   className="text-sm bg-white/20 px-10 py-5 rounded-full"
@@ -213,34 +223,32 @@ export default function BentoFeatures() {
                                 </span>
                               ))}
                             </div>
+                          </div>
 
-                          {/* PROGRESS BAR */}
-                      <div className="space-y-2">
-
-                        <div className="w-full h-5 rounded-full bg-white/25 overflow-hidden shadow-inner">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: "82%" }}
-                            transition={{ duration: 1.4, ease: "easeOut" }}
-                            className="h-full bg-gradient-to-r from-[#FFD66B] to-[#FFC14D] rounded-full"
-                          />
-                        </div>
-                      </div>
-
-                        </div>
+                          {/* PROGRESS BAR — mobile + desktop */}
+                          <div className="absolute bottom-6 left-4 md:left-8 w-[85%] md:w-[90%]">
+                            <div className="w-full h-4 md:h-5 rounded-full bg-white/25 overflow-hidden shadow-inner">
+                              <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: "72%" }}
+                                transition={{ duration: 1.4, ease: "easeOut" }}
+                                className="h-full bg-gradient-to-r from-[#FFD66B] to-[#FFC14D] rounded-full"
+                              />
+                            </div>
+                          </div>
+                        </>
                       )}
-
 
                     {/* BARS */}
                     {item.type === "bars" && (
-                      <div className="absolute bottom-6 md:bottom-8 left-4 md:left-8 space-y-2 w-28 md:w-40">
+                     <div className="absolute bottom-5 left-4 space-y-2 w-28 md:hidden">
                         {["HI", "ML", "BN"].map((l, idx) => (
                           <motion.div
                             key={l}
                             initial={{ width: 0 }}
                             animate={{ width: `${80 - idx * 15}%` }}
                             transition={{ duration: 0.8, delay: idx * 0.2 }}
-                            className="h-2 md:h-3 bg-[#6F4BD8] rounded-full"
+                            className="h-2 md:h-3 bg-[#654bd8] rounded-full"
                           />
                         ))}
                       </div>
@@ -248,7 +256,7 @@ export default function BentoFeatures() {
 
                     {/* METRIC */}
                     {item.type === "metric" && (
-                      <div className="absolute bottom-6 md:bottom-8 left-4 md:left-8 space-y-2">
+                      <div className="absolute bottom-6 md:bottom-5 left-4 md:left-8 space-y-1">
                         <div className="text-[10px] md:text-sm font-semibold">
                           Universal ID verified
                         </div>
@@ -300,30 +308,31 @@ export default function BentoFeatures() {
                       </div>
                     )}
 
-                    {/* LANGUAGES */}
-                    {item.type === "languages" && (
-                      <div className="absolute bottom-6 md:bottom-8 left-4 md:left-8 flex flex-wrap gap-2">
-                        {["Hindi", "Malayalam", "English", ].map((l) => (
-                          <motion.span
-                            key={l}
-                            whileHover={{ y: -4 }}
-                            transition={{ type: "spring" }}
-                            className="text-[10px] md:text-sm bg-white px-3 py-1 rounded-full"
-                          >
-                            {l}
-                          </motion.span>
-                        ))}
-                      </div>
-                    )}
+                      {/* LANGUAGES */}
+                      {item.type === "languages" && (
+                        <div className="hidden md:flex absolute bottom-5 left-8 flex-wrap gap-2">
+                          {["Hindi", "Malayalam", "English"].map((l) => (
+                            <motion.span
+                              key={l}
+                              whileHover={{ y: -4 }}
+                              transition={{ type: "spring" }}
+                              className="text-sm bg-white px-3 py-1 rounded-full"
+                            >
+                              {l}
+                            </motion.span>
+                          ))}
+                        </div>
+                      )}
+
 
                     {/* PROGRESS */}
                     {item.type === "progress" && (
-                      <div className="absolute bottom-6 md:bottom-8 left-4 md:left-8 w-[80%] md:w-72 h-2 md:h-3 bg-white/20 rounded-full">
+                      <div className="absolute bottom-3 md:bottom-6 left-4 md:left-8 w-[80%] md:w-92 h-2 md:h-3 bg-[rgb(253,255,194)] rounded-full">
                         <motion.div
                           initial={{ width: 0 }}
-                          animate={{ width: "65%" }}
+                          animate={{ width: "70%" }}
                           transition={{ duration: 1.2 }}
-                          className="h-full bg-black rounded-full"
+                          className="h-full bg-[#0400ff] rounded-full"
                         />
                       </div>
                     )}

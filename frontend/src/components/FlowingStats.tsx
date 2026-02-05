@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import FlowingMenu from "./FlowingMenu";
 import feature from "@/assets/features-background.jpg";
 import Records from "@/assets/digital-records.jpg";
@@ -10,23 +11,35 @@ const statsItems = [
 ];
 
 export default function FlowingStats() {
+  const [height, setHeight] = useState("450px");
+
+  useEffect(() => {
+    const handleResize = () => {
+      setHeight(window.innerWidth < 768 ? "360px" : "460px");
+    };
+
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <section
       style={{
-        backgroundColor: "#F9EFE3",
+        backgroundColor: "#FFFDF5",
         paddingTop: "32px",
         paddingBottom: "32px",
       }}
     >
       <div
         style={{
-          height: "450px",
+          height,
           position: "relative",
         }}
       >
         <FlowingMenu
           items={statsItems}
-          bgColor="#F9EFE3"
+          bgColor="#FFFDF5"
           textColor="#402EE6"
           marqueeBgColor="#402EE6"
           marqueeTextColor="#FFCC33"

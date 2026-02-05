@@ -80,7 +80,7 @@ const TestimonialSection = () => {
   ];
 
   return (
-    <section className="py-20 md:py-24 bg-[#F9EFE3] overflow-hidden">
+    <section className="py-20 md:py-24 bg-[#FFFDF5] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-14 md:mb-20">

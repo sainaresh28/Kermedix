@@ -5,7 +5,6 @@
 
 
 
-
 @layer base {
   :root {
     /* Black & White Professional Theme - HSL Format */
@@ -262,7 +261,6 @@
     transform: scale(1);
   }
 }
-
 
 
 @keyframes marquee {

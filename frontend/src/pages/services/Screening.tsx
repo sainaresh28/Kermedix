@@ -1,115 +1,217 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Stethoscope, Heart, Activity, Eye, Shield, FileText } from "lucide-react";
+import {
+  Stethoscope,
+  Heart,
+  Activity,
+  Eye,
+  Shield,
+  FileText,
+} from "lucide-react";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const Screening = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
+    <>
+      {/* FONT + TYPOGRAPHY */}
+      <style>
+        {`
+          @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap");
 
-          <h1 className="text-5xl font-bold text-black mb-6">Health Screening Services</h1>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive health screening programs for early detection and prevention of diseases
-          </p>
-        </div>
+          .saas {
+            font-family: "Montserrat", system-ui, -apple-system,
+              BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          }
 
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <Card className="border-2 border-black hover:shadow-2xl transition-all duration-300 group">
-            <CardHeader>
-              <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Stethoscope className="h-8 w-8 text-white" />
-              </div>
-              <CardTitle className="text-2xl">General Health Checkup</CardTitle>
-              <CardDescription className="text-base text-gray-600">
-                Complete physical examination including vital signs, BMI, and general health assessment
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          .saas-h1 {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+          }
 
-          <Card className="border-2 border-black hover:shadow-2xl transition-all duration-300 group">
-            <CardHeader>
-              <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Heart className="h-8 w-8 text-white" />
-              </div>
-              <CardTitle className="text-2xl">Cardiovascular Screening</CardTitle>
-              <CardDescription className="text-base text-gray-600">
-                Blood pressure monitoring, ECG, and cardiac risk assessment for heart health
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          .saas-h2 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+          }
 
-          <Card className="border-2 border-black hover:shadow-2xl transition-all duration-300 group">
-            <CardHeader>
-              <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Activity className="h-8 w-8 text-white" />
-              </div>
-              <CardTitle className="text-2xl">Diabetes Screening</CardTitle>
-              <CardDescription className="text-base text-gray-600">
-                Blood sugar testing, HbA1c monitoring, and diabetes risk evaluation
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          .saas-body {
+            font-weight: 500;
+            line-height: 1.7;
+          }
+        `}
+      </style>
 
-          <Card className="border-2 border-black hover:shadow-2xl transition-all duration-300 group">
-            <CardHeader>
-              <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Eye className="h-8 w-8 text-white" />
-              </div>
-              <CardTitle className="text-2xl">Vision & Hearing Tests</CardTitle>
-              <CardDescription className="text-base text-gray-600">
-                Eye examination and hearing tests to ensure sensory health
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </div>
+      {/* PAGE */}
+      <section className="saas min-h-screen bg-[#FFFDF5] pt-24 sm:pt-32 pb-28">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
 
-        <div className="bg-gradient-to-br from-black to-gray-900 p-10 rounded-2xl border-2 border-black shadow-2xl text-white">
-          <div className="flex items-center gap-3 mb-8">
-            <Shield className="h-8 w-8" />
-            <h2 className="text-3xl font-bold">Screening Programs</h2>
+          {/* HERO */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="max-w-3xl mb-24"
+          >
+            <p className="text-sm uppercase tracking-[0.25em] text-black/60 mb-4">
+              Preventive healthcare
+            </p>
+
+            <h1 className="saas-h1 text-[40px] sm:text-[56px] text-black mb-6">
+              Health screening,
+              <br />
+              designed for early action.
+            </h1>
+
+            <p className="saas-body text-[16px] sm:text-[18px] text-black/70">
+              Comprehensive screening programs focused on early detection,
+              workplace safety, and long-term health outcomes.
+            </p>
+          </motion.div>
+
+          {/* CORE SCREENINGS */}
+          <div className="grid sm:grid-cols-2 gap-8 mb-28">
+            {[
+              {
+                icon: Stethoscope,
+                title: "General health checkup",
+                desc: "Physical examination covering vitals, BMI, and baseline health indicators.",
+              },
+              {
+                icon: Heart,
+                title: "Cardiovascular screening",
+                desc: "Blood pressure, ECG, and cardiac risk profiling for early heart disease detection.",
+              },
+              {
+                icon: Activity,
+                title: "Diabetes screening",
+                desc: "Blood glucose, HbA1c monitoring, and metabolic risk assessment.",
+              },
+              {
+                icon: Eye,
+                title: "Vision & hearing tests",
+                desc: "Clinical eye and hearing evaluations to ensure sensory well-being.",
+              },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                  className="
+                    group rounded-2xl
+                    bg-[#FFF7D6]
+                    border border-black/10
+                    p-8
+                    transition-all duration-300
+                    hover:-translate-y-[2px]
+                    hover:shadow-[0_14px_32px_rgba(0,0,0,0.08)]
+                    hover:ring-2 hover:ring-[#402EE6]/20
+                  "
+                >
+                  {/* ICON */}
+                  <div
+                    className="
+                      h-12 w-12 rounded-xl
+                      bg-[#FFCC33]
+                      flex items-center justify-center
+                      mb-6
+                    "
+                  >
+                    <Icon className="h-6 w-6 text-black" />
+                  </div>
+
+                  {/* TITLE */}
+                  <h3 className="text-lg font-semibold text-black mb-2 group-hover:text-[#402EE6] transition">
+                    {item.title}
+                  </h3>
+
+                  {/* DESCRIPTION */}
+                  <p className="saas-body text-black/70">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all">
-              <div className="flex items-start gap-3">
-                <FileText className="h-6 w-6 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Annual Health Checkup</h3>
-                  <p className="text-gray-200 leading-relaxed">Comprehensive yearly screening covering all vital health parameters</p>
-                </div>
-              </div>
+
+          {/* PROGRAMS SECTION */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="
+              rounded-2xl
+              bg-[#000000]
+              text-white
+              px-8 sm:px-12 py-16
+            "
+          >
+            <div className="flex items-center gap-4 mb-12">
+              <Shield className="h-7 w-7 text-[#FFCC33]" />
+              <h2 className="saas-h2 text-[26px] sm:text-[32px]">
+                Screening programs
+              </h2>
             </div>
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all">
-              <div className="flex items-start gap-3">
-                <Shield className="h-6 w-6 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Occupational Health Screening</h3>
-                  <p className="text-gray-200 leading-relaxed">Job-specific health assessments for construction and industrial workers</p>
-                </div>
-              </div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[
+                {
+                  icon: FileText,
+                  title: "Annual health checkup",
+                  desc: "Comprehensive yearly evaluation covering essential health metrics.",
+                },
+                {
+                  icon: Shield,
+                  title: "Occupational health screening",
+                  desc: "Role-specific medical assessments for industrial workers.",
+                },
+                {
+                  icon: Activity,
+                  title: "Infectious disease screening",
+                  desc: "Testing for TB, Hepatitis, HIV, and other communicable diseases.",
+                },
+                {
+                  icon: Heart,
+                  title: "Mental health assessment",
+                  desc: "Psychological screening, stress evaluation, and counseling support.",
+                },
+              ].map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={i}
+                    className="
+                      flex gap-4 p-6 rounded-xl
+                      bg-white/5 border border-white/15
+                      hover:bg-white/10 transition-all
+                    "
+                  >
+                    <Icon className="h-6 w-6 flex-shrink-0 mt-1 text-[#FFCC33]" />
+
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">
+                        {item.title}
+                      </h3>
+                      <p className="saas-body text-white/70">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all">
-              <div className="flex items-start gap-3">
-                <Activity className="h-6 w-6 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Infectious Disease Screening</h3>
-                  <p className="text-gray-200 leading-relaxed">Testing for TB, Hepatitis, HIV, and other communicable diseases</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all">
-              <div className="flex items-start gap-3">
-                <Heart className="h-6 w-6 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Mental Health Assessment</h3>
-                  <p className="text-gray-200 leading-relaxed">Psychological evaluation and stress management counseling</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          </motion.div>
+
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 

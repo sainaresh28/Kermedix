@@ -47,7 +47,7 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        /* Healthcare-specific semantic colors */
+        
         healthcare: {
           table: "hsl(var(--table-border))",
           sidebar: "hsl(var(--sidebar-bg))",

@@ -71,7 +71,7 @@ const News = () => {
   const rest = newsArticles.filter(n => !n.featured);
 
   return (
-    <div className="bg-[#F9EFE3] pt-28 pb-32">
+    <div className="bg-[#FFFDF5] pt-28 pb-32">
       <div className="max-w-7xl mx-auto px-4">
 
         {/* Header */}

@@ -29,9 +29,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9EFE3] flex items-start pt-28">
+        <div className="min-h-screen bg-[#FFFDF5] flex items-start pt-28 lg:pt-28">
 
-      <div className="max-w-[95rem] mx-auto w-full px-6">
+      <div className="max-w-[115rem] mx-auto w-full px-6">
 
 
         {/* GRID WRAPPER */}
@@ -50,8 +50,17 @@ const Login = () => {
 
           {/* LOGIN CARD (CENTER) */}
           <div className="flex justify-center">
-            <div className="bg-white border border-neutral-200 rounded-2xl shadow-sm 
-                            min-h-[420px] w-full max-w-lg p-6 flex flex-col justify-center">
+            <div className="
+                bg-white/15 backdrop-blur-lg
+                border border-white/30
+                rounded-2xl
+                shadow-md
+                transition-all duration-300
+                hover:shadow-[0_20px_40px_rgba(0,0,0,0.25)]
+                hover:scale-[1.02]
+                min-h-[420px] w-full max-w-lg p-6 flex flex-col justify-center
+              ">
+
 
               <div className="text-center mb-8">
                 <h1 className="text-2xl font-semibold text-neutral-900">
@@ -103,7 +112,7 @@ const Login = () => {
                   </Link>
                 </div>
                 <Button
-                  className="h-11 w-full bg-[#002fff] text-white transition-none
+                  className="h-11 w-full bg-[#002fff] text-[#ffffff]
                     shadow-[0_5px_0_#ffffff]
                     active:translate-y-[3px]
                     active:shadow-[0_2px_0_#001fd6]
@@ -113,17 +122,16 @@ const Login = () => {
                   Sign In
                 </Button>
 
+              <div className="flex items-center my-4">
+                <div className="flex-grow border-t border-neutral-300"></div>
 
-                <div className="relative my-4">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-neutral-300" />
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="bg-white px-3 text-neutral-500">
-                      Or continue with
-                    </span> 
-                  </div>
-                </div>
+                <span className="mx-3 text-sm text-neutral-500 whitespace-nowrap">
+                  Or continue with
+                </span>
+
+                <div className="flex-grow border-t border-neutral-300"></div>
+              </div>
+
 
                 {/* Google Sign In */}
                 <Button

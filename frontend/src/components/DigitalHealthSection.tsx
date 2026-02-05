@@ -26,12 +26,61 @@ const DigitalHealthSection = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const lastIndexRef = useRef<number>(-1);
 
+  /* ---------- HAPTIC CONTROL ---------- */
+  const hasUserInteractedRef = useRef(false);
+  const isMobileRef = useRef(false);
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [pillY, setPillY] = useState(0);
 
+  /* ---------- DEVICE DETECTION ---------- */
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
+    const isTouch =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0;
+
+    const isMobileUA = /Android|iPhone|iPad|iPod/i.test(
+      navigator.userAgent
+    );
+
+    isMobileRef.current = isTouch && isMobileUA;
+  }, []);
+
+  /* ---------- USER INTERACTION UNLOCK ---------- */
+  useEffect(() => {
+    const unlock = () => {
+      hasUserInteractedRef.current = true;
+
+      window.removeEventListener("click", unlock);
+      window.removeEventListener("touchstart", unlock);
+      window.removeEventListener("keydown", unlock);
+      window.removeEventListener("wheel", unlock);
+    };
+
+    window.addEventListener("click", unlock);
+    window.addEventListener("touchstart", unlock);
+    window.addEventListener("keydown", unlock);
+    window.addEventListener("wheel", unlock);
+
+    return () => {
+      window.removeEventListener("click", unlock);
+      window.removeEventListener("touchstart", unlock);
+      window.removeEventListener("keydown", unlock);
+      window.removeEventListener("wheel", unlock);
+    };
+  }, []);
+
+  /* ---------- SAFE HAPTIC TRIGGER ---------- */
   const triggerHaptic = (pattern: number | number[]) => {
-    if (typeof navigator !== "undefined" && "vibrate" in navigator) {
+    if (
+      isMobileRef.current &&
+      hasUserInteractedRef.current &&
+      typeof navigator !== "undefined" &&
+      "vibrate" in navigator &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       navigator.vibrate(pattern);
     }
   };
@@ -43,7 +92,7 @@ const DigitalHealthSection = () => {
     audioRef.current = audio;
   }, []);
 
-
+  /* ---------- RESET ON LEAVE ---------- */
   useEffect(() => {
     if (!sectionRef.current) return;
 
@@ -75,7 +124,6 @@ const DigitalHealthSection = () => {
 
           const rect = el.getBoundingClientRect();
           const elCenter = rect.top + rect.height / 2;
-
           const distance = Math.abs(elCenter - centerY) * 0.7;
 
           if (distance < minDistance) {
@@ -92,8 +140,7 @@ const DigitalHealthSection = () => {
           if (el) setPillY(el.offsetTop);
 
           audioRef.current?.play().catch(() => {});
-         
-          triggerHaptic(12);
+          triggerHaptic([40, 60, 40]);
         }
       },
       {
@@ -106,14 +153,13 @@ const DigitalHealthSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  /* ---------- RENDER ---------- */
   return (
     <div className="space-y-6">
       {/* TITLE */}
-      <div>
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-[-0.03em] text-black">
-          Digital Health Records
-        </h2>
-      </div>
+      <h2 className="text-3xl md:text-4xl font-extrabold tracking-[-0.03em] text-black">
+        Digital Health Records
+      </h2>
 
       {/* DESCRIPTION */}
       <div className="mt-8 space-y-4 text-[16.5px] leading-relaxed text-black/65">
@@ -135,8 +181,8 @@ const DigitalHealthSection = () => {
 
       {/* DIFFERENTIATORS */}
       <div ref={sectionRef}>
-        <h3 className="text-sm uppercase tracking-[0.7em] font-bold text-black/60 mb-4">
-          Key Differentiators
+        <h3 className="text-sm tracking-[0.7em] font-bold text-black/60 mb-4">
+          KEY DIFFERENTIATORS
         </h3>
 
         <div className="relative pl-5">

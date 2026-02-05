@@ -7,7 +7,7 @@ import { usePWAInstall } from "@/hooks/usePWAInstall";
 import healthWorkers from '@/assets/prognosis-icon-2803190_1280.png';
 import smartHealthcare from '@/assets/stethoscope-icon-2316460_1280.png';
 import sideVideo from '@/assets/1uEgB20NU24EH65gog.mp4';
-import bottomImage from "@/assets/houseboat_silhouette.png";
+import bottomImage from "@/assets/boathouse.png";
 
 
   const HeroSection = () => {

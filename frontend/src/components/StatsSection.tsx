@@ -1,4 +1,4 @@
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion, useAnimation, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
@@ -33,11 +33,6 @@ const imageReveal = {
   },
 };
 
-const letter = {
-  hidden: { y: 220 },
-  show: { y: 0, transition: { duration: 1, ease: "easeOut" } },
-};
-
 function CountUp({
   value,
   plus,
@@ -50,10 +45,7 @@ function CountUp({
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!trigger) {
-      setCount(0); 
-      return;
-    }
+    if (!trigger) return;
 
     const start = performance.now();
     const duration = 1600;
@@ -80,6 +72,17 @@ export default function StatsSection() {
   const inView = useInView(ref, { amount: 0.35 });
   const controls = useAnimation();
 
+  const textSectionRef = useRef(null);
+const { scrollYProgress } = useScroll({
+  target: textSectionRef,
+  offset: ["start 100%", "end -20%"]
+});
+
+  
+  const xLine1 = useTransform(scrollYProgress, [0, 0.5, 1], ["100%", "0%", "-50%"]);
+  const yLine2 = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], ["100%", "100%", "0%", "-20%"]);
+  const opacityLine1 = useTransform(scrollYProgress, [0, 0.2, 0.7, 1], [0, 1, 1, 0.3]);
+  const opacityLine2 = useTransform(scrollYProgress, [0, 0.3, 0.5, 1], [0, 0, 1, 1]);
 
   useEffect(() => {
     if (inView) {
@@ -105,7 +108,6 @@ export default function StatsSection() {
       >
         <h2>Making Healthcare Accessible</h2>
         <p>Our platform has empowered thousands of migrant workers with digital health records, ensuring healthcare continuity across Kerala.</p>
-      
       </motion.div>
 
       {/* Cards */}
@@ -124,7 +126,7 @@ export default function StatsSection() {
           >
             <motion.img
               src={s.img}
-              alt=""
+              alt={`${s.label} illustration`}
               variants={imageReveal}
             />
 
@@ -142,23 +144,35 @@ export default function StatsSection() {
         ))}
       </motion.div>
 
-      {/* OUR STATS */}
-      <div className="header">
-        {["OUR", "STATS"].map((word, i) => (
-          <motion.div
-            key={i}
-            className="header-item"
-            variants={container}
-            initial="hidden"
-            animate={controls}
+      {/* Scroll-Based Text Animation */}
+      <div ref={textSectionRef} className="text-animation-section">
+        <div className="text-wrapper">
+          
+          <motion.div 
+            className="text-line line-1"
+            style={{ 
+              x: xLine1,
+              opacity: opacityLine1
+            }}
           >
-            {word.split("").map((l, idx) => (
-              <motion.span key={idx} className="letter" variants={letter}>
-                {l}
-              </motion.span>
-            ))}
+            <span className="text-content">
+              OUR STATISTICS REFLECT NOT JUST SCALE, BUT TRUST, ACCESS, AND CONTINUITY OF CARE • OUR STATISTICS REFLECT NOT JUST SCALE, BUT TRUST, ACCESS, AND CONTINUITY OF CARE
+            </span>
           </motion.div>
-        ))}
+
+          <motion.div 
+            className="text-line line-2"
+            style={{ 
+              y: yLine2,
+              opacity: opacityLine2
+            }}
+          >
+            <span className="text-content">
+              OUR STATS
+            </span>
+        
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -167,20 +181,40 @@ export default function StatsSection() {
 /* ================= CSS ================= */
 const css = `
 .stats-section{
-  background:#F9EFE3;
-  padding:1rem 0;
-  font-family:Inter, sans-serif;
+  background:#FFFDF5;
+  padding:0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   overflow:hidden;
+  position:relative;
 }
 
-.top-text{text-align:center;margin-bottom:2rem}
-.top-text h2{font-size:2.5rem;font-weight:700}
-.top-text p{max-width:640px;margin:.5rem auto;color:#555}
+
+
+.top-text{
+  text-align:center;
+  margin-bottom:1.2rem;
+}
+
+.top-text h2{
+  font-size:2.5rem;
+  font-weight:700;
+  color:#1a1a1a;
+  margin-bottom:0.8rem;
+}
+
+.top-text p{
+  max-width:640px;
+  margin:.5rem auto;
+  color:#555;
+  font-size:1.1rem;
+  line-height:1.6;
+}
 
 .items{
   display:flex;
   gap:1.4rem;
   padding:0 1.4rem;
+  margin-bottom:1rem;
 }
 
 .stat-card{
@@ -189,10 +223,7 @@ const css = `
   height:320px;
   border-radius:22px;
   overflow:hidden;
-  background:rgba(255,255,255,.35);
-  backdrop-filter:blur(18px) saturate(140%);
-  border:1px solid rgba(255,255,255,.45);
-  box-shadow:0 30px 60px rgba(0,0,0,.18);
+  cursor:pointer;
 }
 
 .stat-card img{
@@ -210,8 +241,8 @@ const css = `
   justify-content:flex-end;
   background:linear-gradient(
     to top,
-    rgba(0,0,0,.55),
-    rgba(0,0,0,.25),
+    rgba(0,0,0,.58),
+    rgba(0,0,0,.28),
     transparent
   );
 }
@@ -220,41 +251,148 @@ const css = `
   font-size:2.4rem;
   font-weight:800;
   color:white;
+  text-shadow:0 2px 10px rgba(0,0,0,.4);
+  margin-bottom:0.3rem;
 }
 
 .stat-overlay p:last-child{
   font-size:1.05rem;
   font-weight:600;
   color:#f0f0f0;
+  text-shadow:0 1px 6px rgba(0,0,0,.35);
 }
 
-.header{
+/* Text Animation Section */
+.text-animation-section{
+  width:100%;
+  height:600px;
+  position:relative;
+  overflow:hidden;
+  background:#FFFDF5;
   display:flex;
+  align-items:center;
   justify-content:center;
-  margin-top:3rem;
-  opacity:.85;
-  gap:4vw; 
 }
 
-.header-item{
+.text-wrapper{
+  position:relative;
+  width:100%;
+  height:180%;
   display:flex;
-  font-size:10vw;
-  font-weight:800;
-  color:#2f18ff;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
-.letter{display:inline-block}
+.text-line{
+  position:absolute;
+  width:max-content;
+  white-space:nowrap;
+  display:flex;
+  will-change:transform;
+}
 
-/* MOBILE */
+.line-1{
+  top:20%;
+  transform:translateY(-50%);
+}
+
+.line-2{
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.text-content{
+  font-size:clamp(96px, 14vw, 220px);
+  font-weight:900;
+  font-style:normal;
+  color:#2f18ff;
+  letter-spacing:-0.03em;
+  word-spacing: 0.2em;
+  text-transform:uppercase;
+  padding:5vw;
+  line-height:1;
+  user-select:none;
+  -webkit-text-stroke:1.5px rgba(0,0,0,0.08);
+}
+
+.text-content[aria-hidden="true"]{
+  padding-left:4vw;
+}
+
+/* MOBILE RESPONSIVE */
 @media (max-width:768px){
+  .top-text h2{
+    font-size:2.8rem;
+  }
+  
+  .top-text p{
+    font-size:0.95rem;
+    padding:0 2rem;
+  }
+  
   .items{
     overflow-x:auto;
     scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
   }
+  
+  .items::-webkit-scrollbar{
+    display:none;
+  }
+  
   .stat-card{
     flex:0 0 85%;
     scroll-snap-align:center;
     height:260px;
   }
+  
+  
+  .text-animation-section{
+    height:400px;
+  }
+  
+  .text-content{
+    font-size:clamp(96px, 14vw, 220px);
+    padding:2vw;
+  }
+}
+
+@media (max-width:480px){
+  .top-text h2{
+    font-size:2.5rem;
+  }
+  
+  .stat-number{
+    font-size:2rem;
+  }
+  
+  .stat-overlay p:last-child{
+    font-size:0.9rem;
+  }
+  
+  .stat-card{
+    flex:0 0 90%;
+    height:240px;
+  }
+  
+  .text-animation-section{
+    height:200px;
+  }
+  
+  .text-content{
+    font-size:clamp(66px, 10vw, 140px);
+  }
+
+  @media (max-width: 768px){
+  .line-2{
+    transform: translateY(40%) !important;
+    will-change: auto;
+  }
+}
+
+}
+
 }
 `;

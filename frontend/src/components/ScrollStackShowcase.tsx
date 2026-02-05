@@ -106,17 +106,18 @@ const ScrollStackShowcase: React.FC = () => {
       >
         {/* Header Section */}
         <div style={{ textAlign: 'center', marginBottom: '3rem', paddingTop: '2rem' }}>
-          <h1
-            style={{
-              fontSize: '3rem',
-              fontWeight: 800,
-              color: '000000',
-              marginBottom: '1rem',
-              letterSpacing: '-1px',
-            }}
-          >
-            Kermedix Healthcare Platform
-          </h1>
+        <h1
+          style={{
+            fontSize: window.innerWidth <= 768 ? '2rem' : '3rem',
+            fontWeight: 800,
+            color: '#000000',
+            marginBottom: '1rem',
+            letterSpacing: '-1px',
+          }}
+        >
+          Kermedix Healthcare Platform
+        </h1>
+
 
           <p
             style={{

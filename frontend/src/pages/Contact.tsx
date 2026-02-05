@@ -60,7 +60,7 @@ const handleSubmit = (e: React.FormEvent) => {
   return (
     <section
       className="min-h-[85vh] py-20"
-      style={{ backgroundColor: "#F9EFE3" }}
+      style={{ backgroundColor: "#FFFDF5" }}
     >
       <div className="max-w-6xl mx-auto px-4">
 

@@ -216,7 +216,7 @@ const logout = () => {};
 
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#F9EFE3" }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#FFFDF5" }}>
 
       {/* Header  */}
         <header

@@ -19,7 +19,7 @@ const NewsTicker: React.FC = () => {
       {/* Gradient fade right */}
       <div className="absolute right-0 top-0 bottom-0 w-16 pointer-events-none bg-gradient-to-l from-gray-900 to-transparent z-10"></div>
 
-      <div className="max-w-7xl mx-auto flex items-center px-4 sm:px-6 lg:px-8 relative z-20">
+      <div className="max-w-8xl mx-auto flex items-center px-4 sm:px-6 lg:px-8 relative z-20">
         {/* Latest News Badge */}
         <span className="bg-red-600 text-white font-semibold px-3 py-1 rounded-md mr-4 text-sm flex-shrink-0">
           Latest News
