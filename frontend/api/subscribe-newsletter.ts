@@ -10,28 +10,35 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
+    const apiKey = process.env.BREVO_API_KEY;
+
+    if (!apiKey) {
+      console.error("BREVO_API_KEY is missing");
+      return res.status(500).json({ message: "Server misconfiguration" });
+    }
+
     const response = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "api-key": import.meta.env.BREVO_API_KEY,
+        "api-key": apiKey,
       },
       body: JSON.stringify({
         email,
-        listIds: [8], 
         updateEnabled: true,
       }),
     });
 
-    if (!response.ok) {
-      const error = await response.text();
-      console.error("Brevo error:", error);
-      return res.status(500).json({ message: "Brevo subscription failed" });
+    const text = await response.text();
+
+    if (!response.ok && response.status !== 409) {
+      console.error("Brevo error:", text);
+      return res.status(500).json({ message: "Brevo error" });
     }
 
     return res.status(200).json({ success: true });
-  } catch (error) {
-    console.error("Server error:", error);
+  } catch (err) {
+    console.error("Server crashed:", err);
     return res.status(500).json({ message: "Server error" });
   }
 }
