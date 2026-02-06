@@ -50,27 +50,27 @@ export default function Guidelines() {
         `}
       </style>
 
-      <section className="saas min-h-screen bg-transparent pt-24 sm:pt-32 pb-32">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+      <section className="saas min-h-screen bg-transparent pt-20 sm:pt-28 md:pt-32 pb-20 sm:pb-24 md:pb-32">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* ================= HERO ================= */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="mb-28"
+            className="mb-16 sm:mb-20 md:mb-28"
           >
-            <p className="text-xs uppercase tracking-[0.28em] text-black/60 mb-4">
+            <p className="text-xs sm:text-sm uppercase tracking-[0.28em] text-black/60 mb-3 sm:mb-4">
               Health & safety guidance
             </p>
 
-            <h1 className="h1 text-[38px] sm:text-[56px] text-black mb-6">
+            <h1 className="h1 text-3xl xs:text-[34px] sm:text-[42px] md:text-[56px] text-black mb-4 sm:mb-6">
               Practical health guidelines
-              <br />for everyday safety
+              <br className="hidden sm:block" /> for everyday safety
             </h1>
 
-            <p className="body text-black/70 max-w-2xl">
+            <p className="body text-black/70 text-sm sm:text-base max-w-2xl">
               Clear, actionable guidance designed to help migrant workers stay
               healthy at home, at work, and in public environments.
             </p>
@@ -80,21 +80,21 @@ export default function Guidelines() {
           <motion.section
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             variants={fadeUp}
-            className="mb-28"
+            className="mb-16 sm:mb-20 md:mb-28"
           >
-            <div className="flex items-center gap-4 mb-10">
-              <BookOpen className="h-7 w-7 text-[#FFCC33]" />
-              <h2 className="h2 text-2xl text-black">
+            <div className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10">
+              <BookOpen className="h-6 w-6 sm:h-7 sm:w-7 text-[#FFCC33]" />
+              <h2 className="h2 text-xl sm:text-2xl md:text-2xl text-black">
                 General health & hygiene
               </h2>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-14 items-start">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-14 items-start">
 
               {/* LEFT — CHECKLIST RAIL */}
-              <div className="relative pl-8 space-y-4">
+              <div className="relative pl-7 sm:pl-8 space-y-3 sm:space-y-4">
                 <div className="absolute left-2 top-0 bottom-0 w-[2px] bg-[#FFCC33]" />
 
                 {[
@@ -105,8 +105,8 @@ export default function Guidelines() {
                   "Use clean clothing and towels",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-[#FFCC33] mt-1" />
-                    <p className="body text-black/70">{item}</p>
+                    <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-[#FFCC33] mt-1 flex-shrink-0" />
+                    <p className="body text-black/70 text-sm sm:text-base">{item}</p>
                   </div>
                 ))}
               </div>
@@ -115,23 +115,23 @@ export default function Guidelines() {
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="relative"
+                className="relative mt-8 lg:mt-0"
               >
                 <div
                   className="
-                    relative rounded-2xl
+                    relative rounded-xl sm:rounded-2xl
                     bg-[#FFF7D6]
                     border border-black/10
-                    p-4 sm:p-6
+                    p-3 sm:p-4 md:p-6
                   "
                 >
                   {/* subtle depth layer */}
                   <div
                     className="
-                      absolute inset-0 translate-x-3 translate-y-3
-                      rounded-2xl bg-[#FFE08A]
+                      absolute inset-0 translate-x-2 translate-y-2 sm:translate-x-3 sm:translate-y-3
+                      rounded-xl sm:rounded-2xl bg-[#FFE08A]
                       border border-black/10
                       -z-10
                     "
@@ -142,13 +142,13 @@ export default function Guidelines() {
                     alt="Personal hygiene practices"
                     className="
                       w-full h-auto
-                      rounded-xl
+                      rounded-lg sm:rounded-xl
                       object-cover
                     "
                   />
 
                   {/* caption */}
-                  <p className="mt-4 text-sm text-black/60">
+                  <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-black/60">
                     Simple hygiene practices significantly reduce illness and infection.
                   </p>
                 </div>
@@ -157,23 +157,22 @@ export default function Guidelines() {
             </div>
           </motion.section>
 
-
           {/* ================= HEALTH CHECKUPS — TIMELINE ================= */}
           <motion.section
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             variants={fadeUp}
-            className="mb-28"
+            className="mb-16 sm:mb-20 md:mb-28"
           >
-            <div className="flex items-center gap-4 mb-8">
-              <ClipboardCheck className="h-7 w-7 text-[#FFCC33]" />
-              <h2 className="h2 text-2xl text-black">
+            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <ClipboardCheck className="h-6 w-6 sm:h-7 sm:w-7 text-[#FFCC33]" />
+              <h2 className="h2 text-xl sm:text-2xl md:text-2xl text-black">
                 Regular health checkups
               </h2>
             </div>
 
-            <div className="grid sm:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
               {[
                 "Annual screening",
                 "Vaccinations",
@@ -183,15 +182,15 @@ export default function Guidelines() {
               ].map((step, i) => (
                 <div
                   key={i}
-                  className="relative rounded-xl bg-[#FFF7D6]
-                  border border-black/10 px-4 py-5 text-center"
+                  className="relative rounded-lg sm:rounded-xl bg-[#FFF7D6]
+                  border border-black/10 px-3 sm:px-4 py-4 sm:py-5 text-center"
                 >
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2
-                  h-6 w-6 rounded-full bg-[#FFCC33]
+                  <div className="absolute -top-2 sm:-top-3 left-1/2 -translate-x-1/2
+                  h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-[#FFCC33]
                   text-black text-xs font-semibold flex items-center justify-center">
                     {i + 1}
                   </div>
-                  <p className="body text-black/70 text-sm mt-3">
+                  <p className="body text-black/70 text-xs sm:text-sm mt-2 sm:mt-3">
                     {step}
                   </p>
                 </div>
@@ -203,18 +202,18 @@ export default function Guidelines() {
           <motion.section
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             variants={fadeUp}
-            className="mb-28"
+            className="mb-16 sm:mb-20 md:mb-28"
           >
-            <div className="flex items-center gap-4 mb-8">
-              <ShieldAlert className="h-7 w-7 text-[#FFCC33]" />
-              <h2 className="h2 text-2xl text-black">
+            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <ShieldAlert className="h-6 w-6 sm:h-7 sm:w-7 text-[#FFCC33]" />
+              <h2 className="h2 text-xl sm:text-2xl md:text-2xl text-black">
                 Workplace safety
               </h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {[
                 "Use PPE at all times",
                 "Follow machinery safety rules",
@@ -224,13 +223,13 @@ export default function Guidelines() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="rounded-xl bg-white
-                  border border-black/10 px-6 py-6
-                  hover:shadow-[0_18px_40px_rgba(0,0,0,0.12)]
+                  className="rounded-lg sm:rounded-xl bg-white
+                  border border-black/10 px-4 sm:px-6 py-4 sm:py-6
+                  hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:hover:shadow-[0_18px_40px_rgba(0,0,0,0.12)]
                   transition"
                 >
-                  <AlertTriangle className="h-6 w-6 text-[#FFCC33] mb-3" />
-                  <p className="body text-black/70">{item}</p>
+                  <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6 text-[#FFCC33] mb-2 sm:mb-3" />
+                  <p className="body text-black/70 text-sm sm:text-base">{item}</p>
                 </div>
               ))}
             </div>
@@ -240,18 +239,18 @@ export default function Guidelines() {
           <motion.section
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             variants={fadeUp}
-            className="mb-28"
+            className="mb-16 sm:mb-20 md:mb-28"
           >
-            <div className="flex items-center gap-4 mb-8">
-              <Info className="h-7 w-7 text-[#FFCC33]" />
-              <h2 className="h2 text-2xl text-black">
+            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <Info className="h-6 w-6 sm:h-7 sm:w-7 text-[#FFCC33]" />
+              <h2 className="h2 text-xl sm:text-2xl md:text-2xl text-black">
                 Infectious disease prevention
               </h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {[
                 "Wear masks in crowded places",
                 "Maintain physical distancing",
@@ -261,12 +260,12 @@ export default function Guidelines() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="relative rounded-xl bg-[#FFF7D6]
-                  border border-black/10 px-6 py-5"
+                  className="relative rounded-lg sm:rounded-xl bg-[#FFF7D6]
+                  border border-black/10 px-4 sm:px-6 py-4 sm:py-5"
                 >
-                  <div className="absolute top-0 left-0 h-full w-[4px]
-                  bg-[#FFCC33] rounded-l-xl" />
-                  <p className="body text-black/70">{item}</p>
+                  <div className="absolute top-0 left-0 h-full w-[3px] sm:w-[4px]
+                  bg-[#FFCC33] rounded-l-lg sm:rounded-l-xl" />
+                  <p className="body text-black/70 text-sm sm:text-base">{item}</p>
                 </div>
               ))}
             </div>
@@ -276,33 +275,33 @@ export default function Guidelines() {
           <motion.section
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             variants={fadeUp}
-            className="rounded-3xl bg-black px-8 sm:px-14 py-16"
+            className="rounded-xl sm:rounded-2xl md:rounded-3xl bg-black px-5 sm:px-8 md:px-14 py-10 sm:py-12 md:py-16"
           >
-            <div className="flex items-center gap-4 mb-10">
-              <Phone className="h-7 w-7 text-[#FFCC33]" />
-              <h2 className="h2 text-[26px] sm:text-[32px] text-white">
+            <div className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10">
+              <Phone className="h-6 w-6 sm:h-7 sm:w-7 text-[#FFCC33]" />
+              <h2 className="h2 text-xl sm:text-2xl md:text-[32px] text-white">
                 Emergency contacts
               </h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {[
-                ["Health Helpline", "104"],
+                ["Disha Health Helpline", "1056"],
                 ["Ambulance", "108"],
-                ["Labour Welfare", "1800-425-1234"],
-                ["Mental Health", "1800-599-0019"],
+                ["Centralized helpline ", "112"],
+                ["Labour Welfare", "0471- 2463769"]               
               ].map(([label, value], i) => (
                 <div
                   key={i}
-                  className="rounded-xl bg-white/5
-                  border border-white/15 px-6 py-6"
+                  className="rounded-lg sm:rounded-xl bg-white/5
+                  border border-white/15 px-4 sm:px-6 py-4 sm:py-6"
                 >
-                  <p className="text-sm text-white/70 mb-1">
+                  <p className="text-xs sm:text-sm text-white/70 mb-1">
                     {label}
                   </p>
-                  <p className="text-2xl font-semibold text-white">
+                  <p className="text-lg sm:text-xl md:text-2xl font-semibold text-white">
                     {value}
                   </p>
                 </div>
