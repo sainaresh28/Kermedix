@@ -9,7 +9,6 @@ import FlowingStats from "@/components/FlowingStats";
 import InteractiveMap from "@/components/InteractiveMap";
 import BentoShowcase from "@/components/BentoShowcase";
 import TestimonialSection from "@/components/TestimonialSection";
-import ThreeDDeviceShowcase from "@/components/ThreeDDeviceShowcase";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -354,7 +353,6 @@ const handleSubmit = async (e) => {
       <FlowingStats />
       <ScrollStackShowcase/>
       <BentoShowcase />
-      <ThreeDDeviceShowcase />
       <TestimonialSection />
       <InteractiveMap />
       
