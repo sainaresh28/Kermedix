@@ -6,8 +6,8 @@ import Records from "@/assets/digital-records.jpg";
 const statsItems = [
   { link: "#", text: "50,000+ Active Profiles", image: Records },
   { link: "#", text: "200,000+ Health Records", image: feature },
-  { link: "#", text: "150+ Healthcare Facilities", image: "/images/hc3.png" },
-  { link: "#", text: "24/7 Real-time Updates", image: "/images/facility2.png" },
+  { link: "#", text: "150+ Healthcare Facilities", image: "/images/hc3.webp" },
+  { link: "#", text: "24/7 Real-time Updates", image: "/images/facility2.webp" },
 ];
 
 export default function FlowingStats() {
