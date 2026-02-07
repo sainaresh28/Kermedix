@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 
-import logoImage from '@/assets/logo.png'; 
+import logoImage from '@/assets/logo.webp'; 
 
 import { motion, useMotionValue } from "framer-motion";
 import { useEffect } from "react";
