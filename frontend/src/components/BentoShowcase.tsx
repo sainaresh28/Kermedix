@@ -25,7 +25,7 @@ const features = [
     bg: "bg-[#4b62fe]",
     text: "text-white",
     type: "hero",
-    image: "/images/facility2.png",
+    image: "/images/facility2.webp",
   },
   {
     title: "Migrant Worker Support",
@@ -34,7 +34,7 @@ const features = [
     bg: "bg-[#f5ffc2]",
     text: "text-black",
     type: "bars",
-    image: "/images/facility5.png",
+    image: "/images/facility5.webp",
   },
   {
     title: "Smart Health ID",
@@ -43,7 +43,7 @@ const features = [
     bg: "bg-[#E9E1FF]",
     text: "text-black",
     type: "metric",
-    image: "/images/facility6.png",
+    image: "/images/facility6.webp",
   },
   {
     title: "Doctor Dashboard",
@@ -52,7 +52,7 @@ const features = [
     bg: "bg-[#F6C96B]",
     text: "text-black",
     type: "avatars",
-    image: "/images/facility3.png",
+    image: "/images/facility3.webp",
   },
   {
     title: "Vaccine Coverage ",
@@ -61,7 +61,7 @@ const features = [
     bg: "bg-[#f2f2f2]",
     text: "text-black",
     type: "growth",
-    image: "/images/vaccine5.png",
+    image: "/images/vaccine5.webp",
   },
   {
     title: "Multilingual UI",
@@ -70,7 +70,7 @@ const features = [
     bg: "bg-[#E9E1FF]",
     text: "text-black",
     type: "languages",
-    image: "/images/facility1.png",
+    image: "/images/facility1.webp",
   },
   {
     title: "Smart Appointment Scheduling",
@@ -80,7 +80,7 @@ const features = [
     bg: "bg-[#E8E4C9]",
     text: "text-black",
     type: "progress",
-    image: "/images/facility6.png",
+    image: "/images/facility6.webp",
   },
   {
     title: "Emergency Alerts",
@@ -89,7 +89,7 @@ const features = [
     bg: "bg-[#edff84]",
     text: "text-black",
     type: "timer",
-    image: "/images/hc5.png",
+    image: "/images/hc5.webp",
   },
 ];
 
