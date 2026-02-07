@@ -133,37 +133,37 @@ const Gallery = () => {
           id: 1, 
           title: "Annual Health Screening Camp 2024", 
           location: "Ernakulam District", 
-          image: "/images/hc1.png" 
+          image: "/images/hc1.webp" 
         },
         { 
           id: 2, 
           title: "Mobile Healthcare Unit Service", 
           location: "Thrissur Rural Area", 
-          image: "/images/hc2.png" 
+          image: "/images/hc2.webp" 
         },
         { 
           id: 3, 
           title: "Comprehensive Health Screening Drive", 
           location: "Kozhikode City Center", 
-          image: "/images/hc3.png" 
+          image: "/images/hc3.webp" 
         },
         { 
           id: 4, 
           title: "Community Health Awareness Workshop", 
           location: "Kottayam Municipality", 
-          image: "/images/hc4.png" 
+          image: "/images/hc4.webp" 
         },
         { 
           id: 5, 
           title: "Emergency First Aid Training Program", 
           location: "Kannur Coastal Region", 
-          image: "/images/hc5.png" 
+          image: "/images/hc5.webp" 
         },
         { 
           id: 6, 
           title: "Nutrition & Wellness Awareness Session", 
           location: "Palakkad District", 
-          image: "/images/hc6.png" 
+          image: "/images/hc6.webp" 
         },
       ]
     },
@@ -175,37 +175,37 @@ const Gallery = () => {
           id: 1, 
           title: "COVID-19 Vaccination Drive Phase 3", 
           location: "Multiple Centers Across Kerala", 
-          image: "/images/vaccine1.png" 
+          image: "/images/vaccine1.webp" 
         },
         { 
           id: 2, 
           title: "Seasonal Influenza Prevention Campaign", 
           location: "Thiruvananthapuram Capital", 
-          image: "/images/vaccine2.png" 
+          image: "/images/vaccine2.webp" 
         },
         { 
           id: 3, 
           title: "Tetanus Immunization Program", 
           location: "Kollam Industrial Zone", 
-          image: "/images/vaccine3.png" 
+          image: "/images/vaccine3.webp" 
         },
         { 
           id: 4, 
           title: "Hepatitis B Vaccination Initiative", 
           location: "Malappuram Medical College", 
-          image: "/images/vaccine4.png" 
+          image: "/images/vaccine4.webp" 
         },
         { 
           id: 5, 
           title: "Child Immunization Awareness Day", 
           location: "Wayanad Tribal Areas", 
-          image: "/images/vaccine5.png" 
+          image: "/images/vaccine5.webp" 
         },
         { 
           id: 6, 
           title: "Typhoid Prevention & Control Drive", 
           location: "Alappuzha Backwater Region", 
-          image: "/images/vaccine6.png" 
+          image: "/images/vaccine6.webp" 
         },
       ]
     },
@@ -217,37 +217,37 @@ const Gallery = () => {
           id: 1, 
           title: "Main Health Center & Administration", 
           location: "Kochi Central Office", 
-          image: "/images/facility1.png" 
+          image: "/images/facility1.webp" 
         },
         { 
           id: 2, 
           title: "Digital Health Records System Room", 
           location: "Headquarters Building", 
-          image: "/images/facility2.png" 
+          image: "/images/facility2.webp" 
         },
         { 
           id: 3, 
           title: "Telemedicine Consultation Station", 
           location: "Thrissur Regional Center", 
-          image: "/images/facility3.png" 
+          image: "/images/facility3.webp" 
         },
         { 
           id: 4, 
           title: "Modern Diagnostic Laboratory Facility", 
           location: "Kozhikode Medical Complex", 
-          image: "/images/facility4.png" 
+          image: "/images/facility4.webp" 
         },
         { 
           id: 5, 
           title: "Patient Waiting & Reception Area", 
           location: "Ernakulam Health Center", 
-          image: "/images/facility5.png" 
+          image: "/images/facility5.webp" 
         },
         { 
           id: 6, 
           title: "Doctor Consultation & Examination Rooms", 
           location: "Main Medical Branch", 
-          image: "/images/facility6.png" 
+          image: "/images/facility6.webp" 
         },
       ]
     }
