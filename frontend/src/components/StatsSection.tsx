@@ -2,12 +2,12 @@ import { motion, useAnimation, useInView, useScroll, useTransform } from "framer
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: 1100, label: "Registered Workers", img: "/images/facility1.png", plus: true },
-  { value: 80, label: "Healthcare Providers", img: "/images/facility2.png", plus: true  },
-  { value: 2400, label: "Digital Health Records", img: "/images/facility3.png", plus: true },
-  { value: 750, label: "Vaccinations Tracked", img: "/images/facility4.png", plus: true },
-  { value: 14, label: "Districts Covered", img: "/images/facility5.png", plus: true  },
-  { value: 500, label: "Emergency Accesses", img: "/images/facility6.png", plus: true },
+  { value: 1100, label: "Registered Workers", img: "/images/facility1.webp", plus: true },
+  { value: 80, label: "Healthcare Providers", img: "/images/facility2.webp", plus: true  },
+  { value: 2400, label: "Digital Health Records", img: "/images/facility3.webp", plus: true },
+  { value: 750, label: "Vaccinations Tracked", img: "/images/facility4.webp", plus: true },
+  { value: 14, label: "Districts Covered", img: "/images/facility5.webp", plus: true  },
+  { value: 500, label: "Emergency Accesses", img: "/images/facility6.webp", plus: true },
 ];
 
 const container = {
