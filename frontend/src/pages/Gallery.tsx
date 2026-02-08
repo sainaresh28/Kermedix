@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { ChevronLeft, ChevronRight, MapPin, Camera, Star, Zap, Shield, Sparkles } from "lucide-react";
 
 const MontserratFontLoader = () => {
   useEffect(() => {
@@ -78,7 +78,7 @@ const Carousel = ({ items, title, description }: { items: any[], title: string, 
             className="
               flex-shrink-0 w-[280px] sm:w-[300px] md:w-[320px] rounded-xl md:rounded-2xl overflow-hidden
               border border-gray-200
-              bg-white/95 backdrop-blur-sm
+              bg-white backdrop-blur-sm
               shadow-sm
               hover:shadow-lg
               transition-all duration-300
@@ -255,72 +255,217 @@ const Gallery = () => {
 
   const activeGallery = galleries[activeSection];
 
+ 
+  const columnImages = [
+    // Column 1 images
+    [
+      "/images/hc1.webp",
+      "/images/vaccine2.webp",
+      "/images/facility3.webp",
+      "/images/hc4.webp",
+      "/images/vaccine5.webp"
+    ],
+    // Column 2 images 
+    [
+      "/images/facility2.webp",
+      "/images/hc3.webp",
+      "/images/vaccine4.webp",
+      "/images/facility1.webp",
+      "/images/hc5.webp"
+    ],
+    // Column 3 images 
+    [
+      "/images/vaccine1.webp",
+      "/images/facility4.webp",
+      "/images/hc2.webp",
+      "/images/vaccine3.webp",
+      "/images/facility5.webp"
+    ],
+    // Column 4 images 
+    [
+      "/images/hc6.webp",
+      "/images/facility6.webp",
+      "/images/vaccine6.webp",
+      "/images/hc1.webp",
+      "/images/vaccine2.webp"
+    ]
+  ];
+
   return (
     <>
       <MontserratFontLoader />
       
-      <div className="min-h-screen bg-transparent pt-20 sm:pt-32 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-12 sm:mb-16">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight px-2 font-montserrat">
-              Healthcare <span className="text-blue-600">Gallery</span>
-            </h1>
-            
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0 font-montserrat">
-              Explore our comprehensive photo collection showcasing healthcare initiatives, 
-              vaccination programs, and medical facilities.
-            </p>
-          </div>
+      <div className="min-h-screen bg-transparent pt-16 pb-12 md:pt-24 lg:pt-28 md:pb-20 lg:pb-24 overflow-hidden">
+      
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Hero Header Section */}
+          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-20 mb-16 lg:mb-1">
+            {/* Left Content */}
+            <div className="max-w-2xl w-full lg:w-auto">
+      
+              <div className="contact-eyebrow text-[#402EE6] mb-4 flex items-center gap-2">
+                <span className="w-6 h-0.5 bg-[#402EE6]"></span>
+                VISUAL STORY OF OUR JOURNEY
+              </div>
 
-          {/* Gallery Navigation */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 sm:mb-12 gap-4 sm:gap-0">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 font-montserrat">
-                {activeGallery.title}
-              </h2>
-              <p className="text-sm sm:text-base text-gray-600 mt-2 max-w-2xl font-montserrat">
-                {activeGallery.description}
+              <h1 className="contact-h1 text-[36px] sm:text-[48px] lg:text-[58px] mb-6">
+                Stories of Care, 
+                <br /><span className="text-[#402EE6]">Captured with Purpose</span>
+              </h1>
+
+              <p className="contact-body text-black/65 max-w-xl mb-8">
+               Explore KerMedix’s visual archive documenting healthcare delivery across Kerala. From community health camps and vaccination drives to clinical consultations and digital health initiatives, each image reflects our commitment to accessible, transparent, and people-centric healthcare.
               </p>
+
+
             </div>
-            
-            {/* Navigation Buttons */}
-            <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => setActiveSection("healthCamps")}
-                className={`px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-all duration-200 font-montserrat ${
-                  activeSection === "healthCamps" 
-                    ? "bg-blue-600 text-white shadow-sm font-semibold" 
-                    : "bg-white/80 text-gray-700 hover:bg-gray-100 border border-gray-200 font-medium"
-                }`}
-              >
-                Health Camps
-              </button>
-              <button
-                onClick={() => setActiveSection("vaccination")}
-                className={`px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-all duration-200 font-montserrat ${
-                  activeSection === "vaccination" 
-                    ? "bg-blue-600 text-white shadow-sm font-semibold" 
-                    : "bg-white/80 text-gray-700 hover:bg-gray-100 border border-gray-200 font-medium"
-                }`}
-              >
-                Vaccination
-              </button>
-              <button
-                onClick={() => setActiveSection("facilities")}
-                className={`px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-all duration-200 font-montserrat ${
-                  activeSection === "facilities" 
-                    ? "bg-blue-600 text-white shadow-sm font-semibold" 
-                    : "bg-white/80 text-gray-700 hover:bg-gray-100 border border-gray-200 font-medium"
-                }`}
-              >
-                Facilities
-              </button>
+
+            {/* Right Side - Animated Image Columns */}
+            <div className="w-full lg:max-w-xl">
+              <div className="relative h-[400px] overflow-hidden rounded-3xl ">
+           
+                <div className="absolute inset-0 flex gap-4 p-4">
+                  
+                  {/* Column 1  */}
+                  <div className="flex-1 overflow-hidden">
+                    <div className="animate-marquee-up-down h-full">
+                      {[...columnImages[0], ...columnImages[0]].map((img, index) => (
+                        <div key={`col1-${index}`} className="mb-4 last:mb-0">
+                          <div className="relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group">
+                            <img 
+                              src={img} 
+                              alt="Gallery" 
+                              className="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src = "https://placehold.co/400x200/e5e7eb/6b7280?text=Healthcare";
+                              }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Column 2 */}
+                  <div className="flex-1 overflow-hidden">
+                    <div className="animate-marquee-down-up h-full">
+                      {[...columnImages[1], ...columnImages[1]].map((img, index) => (
+                        <div key={`col2-${index}`} className="mb-4 last:mb-0">
+                          <div className="relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group">
+                            <img 
+                              src={img} 
+                              alt="Gallery" 
+                              className="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src = "https://placehold.co/400x200/e5e7eb/6b7280?text=Medical";
+                              }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Column 3 */}
+                  <div className="flex-1 overflow-hidden">
+                    <div className="animate-marquee-up-down h-full">
+                      {[...columnImages[2], ...columnImages[2]].map((img, index) => (
+                        <div key={`col3-${index}`} className="mb-4 last:mb-0">
+                          <div className="relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group">
+                            <img 
+                              src={img} 
+                              alt="Gallery" 
+                              className="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src = "https://placehold.co/400x200/e5e7eb/6b7280?text=Vaccine";
+                              }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Column 4 - Moves Down to Up */}
+                  <div className="flex-1 overflow-hidden">
+                    <div className="animate-marquee-down-up h-full">
+                      {[...columnImages[3], ...columnImages[3]].map((img, index) => (
+                        <div key={`col4-${index}`} className="mb-4 last:mb-0">
+                          <div className="relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group">
+                            <img 
+                              src={img} 
+                              alt="Gallery" 
+                              className="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src = "https://placehold.co/400x200/e5e7eb/6b7280?text=Facility";
+                              }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Carousel */}
-          <div className="bg-white/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-200/50 p-4 sm:p-6 md:p-8">
+          {/* Gallery Navigation Section */}
+          <div className="mb-8 lg:mb-12">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0">
+              <div>
+                <h2 className="contact-h2 text-2xl lg:text-3xl mb-2">
+                  {activeGallery.title}
+                </h2>
+                <p className="text-black/60 max-w-2xl contact-body">
+                  {activeGallery.description}
+                </p>
+              </div>
+              
+              {/* Navigation Buttons */}
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => setActiveSection("healthCamps")}
+                  className={`px-4 py-2 rounded-lg font-medium text-sm transition-all flex-shrink-0 ${
+                    activeSection === "healthCamps" 
+                      ? "bg-[#402EE6] text-white shadow-sm font-semibold" 
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200 font-medium"
+                  }`}
+                >
+                  Health Camps
+                </button>
+                <button
+                  onClick={() => setActiveSection("vaccination")}
+                  className={`px-4 py-2 rounded-lg font-medium text-sm transition-all flex-shrink-0 ${
+                    activeSection === "vaccination" 
+                      ? "bg-[#402EE6] text-white shadow-sm font-semibold" 
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200 font-medium"
+                  }`}
+                >
+                  Vaccination
+                </button>
+                <button
+                  onClick={() => setActiveSection("facilities")}
+                  className={`px-4 py-2 rounded-lg font-medium text-sm transition-all flex-shrink-0 ${
+                    activeSection === "facilities" 
+                      ? "bg-[#402EE6] text-white shadow-sm font-semibold" 
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200 font-medium"
+                  }`}
+                >
+                  Facilities
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Carousel Section */}
+          <div className="bg-[#ecdb96] backdrop-blur-sm rounded-xl lg:rounded-2xl border border-gray-200/50 p-4 sm:p-6 lg:p-8 mb-12">
             <Carousel 
               items={activeGallery.items} 
               title={activeGallery.title}
@@ -328,15 +473,16 @@ const Gallery = () => {
             />
           </div>
 
-          {/* Info Text */}
-          <div className="mt-8 text-center text-sm text-gray-500 font-montserrat">
-            <p>Scroll or use arrows to view more photos</p>
+          {/* Info Section */}
+          <div className="text-center text-sm text-gray-500">
+            <p>Scroll horizontally or use navigation arrows to explore more photos</p>
           </div>
+
         </div>
 
-        {/* Inline CSS with Montserrat font family definition */}
+  
         <style>{`
-          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap');
           
           .font-montserrat {
             font-family: 'Montserrat', sans-serif;
@@ -358,28 +504,68 @@ const Gallery = () => {
             line-clamp: 2;
           }
           
-          /* Optional: Add smooth font rendering */
-          * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+          /* Animation Keyframes */
+          @keyframes marqueeUpDown {
+            0% {
+              transform: translateY(0);
+            }
+            100% {
+              transform: translateY(-50%);
+            }
           }
           
-          /* Improve Montserrat rendering on different weights */
-          .font-light {
-            font-weight: 300;
+          @keyframes marqueeDownUp {
+            0% {
+              transform: translateY(-50%);
+            }
+            100% {
+              transform: translateY(0);
+            }
           }
-          .font-normal {
-            font-weight: 400;
+          
+          .animate-marquee-up-down {
+            animation: marqueeUpDown 30s linear infinite;
           }
-          .font-medium {
-            font-weight: 500;
+          
+          .animate-marquee-down-up {
+            animation: marqueeDownUp 30s linear infinite;
           }
-          .font-semibold {
-            font-weight: 600;
+          
+          /* Pause animation on hover */
+          .animate-marquee-up-down:hover,
+          .animate-marquee-down-up:hover {
+            animation-play-state: paused;
           }
-          .font-bold {
-            font-weight: 700;
+          
+          .contact-eyebrow { 
+            font-size: 12px; 
+            letter-spacing:.18em; 
+            text-transform:uppercase; 
+            font-weight:600; 
           }
+          @media (min-width: 640px) {
+            .contact-eyebrow { font-size: 13px; }
+          }
+          .contact-h1 { 
+            letter-spacing:-.035em; 
+            line-height:1.1; 
+            font-weight:800; 
+            font-size: 32px;
+          }
+          @media (min-width: 640px) { .contact-h1 { font-size: 40px; } }
+          @media (min-width: 1024px) { .contact-h1 { font-size: 58px; line-height: 1.05; } }
+          .contact-h2 { 
+            letter-spacing:-.02em; 
+            font-weight:700; 
+            font-size: 24px;
+          }
+          @media (min-width: 1024px) { .contact-h2 { font-size: 32px; } }
+          .contact-body { 
+            line-height:1.6; 
+            font-weight:500;
+            font-size: 16px;
+          }
+          @media (min-width: 640px) { .contact-body { line-height: 1.75; } }
         `}</style>
       </div>
     </>
