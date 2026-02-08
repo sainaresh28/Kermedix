@@ -4,9 +4,12 @@ import {
   Users,
   HeartPulse,
   Scale,
-  Activity,
-  Database,
-  Network,
+  ArrowRight,
+  Check,
+  Globe,
+  Target,
+  Zap,
+  TrendingUp,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
@@ -15,6 +18,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
 /* ---------------- animations ---------------- */
 const container = {
@@ -30,6 +34,11 @@ const fadeUp = {
 const scaleFade = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: { opacity: 1, scale: 1 },
+};
+
+const slideIn = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0 },
 };
 
 /* ---------------- image sources ---------------- */
@@ -80,6 +89,45 @@ const ScrollingImages = ({
   </div>
 );
 
+/* ---------------- Stats Counter ---------------- */
+const StatCounter = ({ value, label }: { value: string; label: string }) => {
+  return (
+    <div className="text-center p-4">
+      <div className="text-3xl md:text-4xl font-black text-black mb-2">
+        {value}
+      </div>
+      <div className="text-sm text-black/60">{label}</div>
+    </div>
+  );
+};
+
+/* ---------------- Timeline Item ---------------- */
+const TimelineItem = ({ 
+  year, 
+  title, 
+  description,
+  isLast = false 
+}: { 
+  year: string; 
+  title: string; 
+  description: string;
+  isLast?: boolean;
+}) => (
+  <div className="relative pl-8 pb-8 md:pb-12">
+    {!isLast && (
+      <div className="absolute left-[15px] top-8 bottom-0 w-0.5 bg-black/10" />
+    )}
+    <div className="absolute left-0 top-0 w-8 h-8 rounded-full bg-white border-4 border-[#402EE6] flex items-center justify-center">
+      <div className="w-2 h-2 rounded-full bg-[#402EE6]" />
+    </div>
+    <div className="space-y-2">
+      <div className="text-sm font-semibold text-[#402EE6]">{year}</div>
+      <h3 className="text-lg font-bold text-black">{title}</h3>
+      <p className="text-black/60 text-sm">{description}</p>
+    </div>
+  </div>
+);
+
 /* ---------------- component ---------------- */
 const About = () => {
   return (
@@ -94,318 +142,219 @@ const About = () => {
         .saas-body { line-height:1.75; font-weight:500; }
       `}</style>
 
-      <section className="saas-root relative overflow-hidden bg-[#FFFDF5] pt-32 pb-36">
-        <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6">
+      <section className="saas-root relative bg-transparent min-h-screen">
+        <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 md:py-16">
 
-          {/* ================= HERO (TEXT + PREVIEW) ================= */}
-          <div className="grid lg:grid-cols-2 gap-20 items-center mb-36">
+          {/* ================= HERO SECTION ================= */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center mb-12 sm:mb-16 md:mb-20 lg:mb-24 pt-4 sm:pt-8">
 
             {/* LEFT TEXT */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={container}
-              className="max-w-3xl"
+              className="max-w-3xl order-2 lg:order-1"
             >
-              <motion.p variants={fadeUp} className="saas-eyebrow text-black/70 mb-5">
-                About KerMedix
-              </motion.p>
+              <motion.div variants={fadeUp} className="flex items-center gap-2 mb-4 sm:mb-5">
+                <div className="w-2 h-2 bg-[#402EE6]" />
+                <span className="saas-eyebrow text-[#402EE6]">
+                  About KerMedix
+                </span>
+              </motion.div>
 
-              <motion.h1 variants={fadeUp} className="saas-h1 text-[46px] sm:text-[62px] xl:text-[70px] text-black mb-8">
+              <motion.h1 variants={fadeUp} className="saas-h1 text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] text-black mb-6 leading-tight">
                 Healthcare records
-                <br />built for mobility.
+                <br />
+                <span className="text-[#402EE6]">built for mobility</span>
               </motion.h1>
 
-              <motion.p variants={fadeUp} className="saas-body text-black/65 max-w-2xl mb-12">
+              <motion.p variants={fadeUp} className="saas-body text-black/65 max-w-2xl mb-8 sm:mb-10 text-base">
                 KerMedix is a secure digital health record infrastructure that
                 enables continuity of care for migrant workers across regions,
                 providers, and institutions.
               </motion.p>
 
-              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
+              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/register"
-                  className="px-8 py-4 text-center text-sm font-bold rounded-md bg-[#402EE6] text-white shadow-xl hover:bg-[#402EE6]/90 transition"
+                  className="group relative px-6 sm:px-8 py-3 sm:py-4 text-center text-sm font-bold bg-[#402EE6] text-white hover:bg-[#402EE6]/90 transition-all duration-300 rounded-lg shadow-lg hover:shadow-xl"
                 >
-                  Get started
+                  <span className="relative flex items-center justify-center gap-2">
+                    Get started free
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </Link>
                 <Link
                   to="/contact"
-                  className="px-8 py-4 text-center text-sm font-semibold rounded-md border border-black/20 hover:bg-black/5 transition"
+                  className="group px-6 sm:px-8 py-3 sm:py-4 text-center text-sm font-bold bg-white border-2 border-[#f7cd14] text-black hover:bg-[#f7cd14]/10 transition-all duration-300 rounded-lg shadow-lg hover:shadow-xl"
                 >
-                  Talk to us
+                  <span className="relative flex items-center justify-center gap-2">
+                    Talk to our team
+                    <Users className="h-4 w-4" />
+                  </span>
                 </Link>
               </motion.div>
             </motion.div>
 
-  {/* ================= RIGHT HERO PREVIEW  ================= */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative hidden lg:block"
-          >
-            {/* ================= DESKTOP ================= */}
-            <div className="absolute right-[-50px] bottom-[-180px] z-10 mx-auto w-[650px]">
-
-              <div className="
-                relative
-                rounded-[18px]
-                bg-[#0a0a0a]
-                p-[6px]
-                border border-black/30
-               
-              ">
-                
-                <div className="
-                  absolute top-[6px] left-1/2 -translate-x-1/2
-                  w-[120px] h-[10px]
-                  bg-[#0a0a0a]
-                  rounded-b-xl
-                  z-20
-                " />
-
-                <div className="relative rounded-[12px] bg-white overflow-hidden">
-                  <ScrollingImages
-                    images={desktopImages}
-                    height={380}
-                    duration={22}
-                  />
+            {/* RIGHT HERO PREVIEW */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="relative h-[240px] sm:h-[320px] md:h-[400px] lg:h-[480px] flex items-center justify-center order-1 lg:order-2"
+            >
+              {/* MACBOOK */}
+              <div className="absolute left-1/2 -translate-x-1/2 lg:left-auto lg:translate-x-0 sm:-right-4 lg:-right-8 top-10 z-10 w-[80%] sm:w-[85%] lg:w-[640px] max-w-[320px] sm:max-w-none">
+                <div className="relative">
+                  <div className="relative rounded-[10px] sm:rounded-[12px] bg-black p-[4px] sm:p-[6px]">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] sm:w-[110px] h-[16px] sm:h-[18px] bg-black rounded-b-[8px] sm:rounded-b-[10px] z-30">
+                      <div className="absolute top-[6px] sm:top-[7px] left-1/2 -translate-x-1/2 w-[3px] sm:w-[3.5px] h-[3px] sm:h-[3.5px] bg-white rounded-full" />
+                    </div>
+                    <div className="relative rounded-[8px] sm:rounded-[10px] bg-white overflow-hidden">
+                      <ScrollingImages
+                        images={desktopImages}
+                        height={typeof window !== 'undefined' ? (window.innerWidth < 640 ? 180 : window.innerWidth < 1024 ? 300 : 360) : 360}
+                        duration={22}
+                      />
+                    </div>
+                  </div>
+                  <div className="relative h-[12px] sm:h-[14px] w-[101%] -ml-[0.5%] rounded-b-[14px] sm:rounded-b-[16px] bg-black shadow-lg" />
                 </div>
               </div>
 
-              <div className="
-                mx-auto mt-[-8px]
-                h-[16px] w-[92%]
-                rounded-b-[28px]
-                bg-gradient-to-b from-[#d7d7d7] to-[#bdbdbd]
-                
-              " />
-            </div>
+              {/* IPHONE */}
+              <div className="absolute right-[15px] sm:right-[-20px] lg:right-[-100px] top-[140px] sm:top-[140px] lg:top-[220px] z-20 w-[90px] sm:w-[140px] lg:w-[180px]">
+                <div className="relative rounded-[28px] sm:rounded-[36px] bg-black p-[2px] sm:p-[3px] shadow-lg">
+                  <div className="absolute left-[-1px] top-[50px] sm:top-[70px] w-[1px] h-[16px] sm:h-[20px] rounded-l-full bg-black" />
+                  <div className="absolute left-[-1px] top-[70px] sm:top-[94px] w-[1px] h-[16px] sm:h-[20px] rounded-l-full bg-black" />
+                  <div className="absolute left-[-1px] top-[90px] sm:top-[118px] w-[1px] h-[30px] sm:h-[40px] rounded-l-full bg-black" />
+                  <div className="absolute right-[-1px] top-[80px] sm:top-[108px] w-[1px] h-[40px] sm:h-[50px] rounded-r-full bg-black" />
 
-            {/* ================= PHONE ================= */}
-            <div className="
-              absolute right-[-120px] bottom-[-260px]
-              z-20
-              w-[200px]
-              rounded-[42px]
-              bg-[#0a0a0a]
-              p-[6px]
-              border border-black/40
-              
-            ">
-              <div className="
-                absolute top-[6px] left-1/2 -translate-x-1/2
-                w-[90px] h-[12px]
-                bg-[#0a0a0a]
-                rounded-b-xl
-                z-30
-              " />
-
-              <div className="
-                absolute top-[12px] left-1/2 -translate-x-1/2
-                w-[36px] h-[4px]
-                bg-black/50
-                rounded-full
-                z-40
-              " />
-
-              <div className="relative rounded-[34px] bg-white overflow-hidden">
-                <ScrollingImages
-                  images={mobileImages}
-                  height={300}
-                  duration={16}
-                />
-              </div>
-            </div>
-
-          </motion.div>
-
-          {/* ================= HERO PREVIEW (MOBILE ONLY) ================= */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative flex justify-center mt-2 lg:hidden"
-          >
-            <div className="relative scale-[0.9] origin-top w-full flex justify-center">
-
-              {/* ================= DESKTOP  ================= */}
-              <div
-                className="
-                  relative
-                  mx-auto
-                  w-[90vw]
-                  max-w-[520px]
-                "
-              >
-                <div className="relative rounded-[18px] bg-[#0a0a0a] p-[6px] border border-black/30 ">
-                  <div className="absolute top-[6px] left-1/2 -translate-x-1/2 w-[110px] h-[10px] bg-[#0a0a0a] rounded-b-xl z-20" />
-
-                  <div className="relative rounded-[12px] bg-white overflow-hidden">
-                    <ScrollingImages
-                      images={desktopImages}
-                      height={300}
-                      duration={22}
-                    />
+                  <div className="relative rounded-[26px] sm:rounded-[34px] bg-black p-[3px] sm:p-[4px] overflow-hidden">
+                    <div className="absolute top-[5px] sm:top-[6px] left-1/2 -translate-x-1/2 w-[50px] sm:w-[65px] h-[14px] sm:h-[17px] bg-black rounded-[12px] sm:rounded-[15px] z-30">
+                      <div className="absolute top-1/2 left-[20px] sm:left-[24px] -translate-x-1/2 -translate-y-1/2 w-[2.5px] sm:w-[3px] h-[2.5px] sm:h-[3px] bg-white rounded-full" />
+                      <div className="absolute top-1/2 right-[18px] sm:right-[22px] -translate-y-1/2 w-[12px] sm:w-[16px] h-[6px] sm:h-[7px] bg-black/90 rounded-full" />
+                    </div>
+                    <div className="relative rounded-[24px] sm:rounded-[32px] bg-white overflow-hidden">
+                      <ScrollingImages
+                        images={mobileImages}
+                        height={typeof window !== 'undefined' ? (window.innerWidth < 640 ? 150 : window.innerWidth < 1024 ? 220 : 280) : 280}
+                        duration={32}
+                      />
+                    </div>
                   </div>
                 </div>
-
-                <div className="mx-auto mt-[-8px] h-[14px] w-[92%] rounded-b-[26px] " />
               </div>
+            </motion.div>
+          </div>
 
-              {/* ================= PHONE ================= */}
-              <div
-                className="
-                  absolute
-                  right-[-20px]     
-                  bottom-[-120px]    
-                  z-20
-                  w-[160px]
-                  rounded-[38px]
-                  bg-[#0a0a0a]
-                  p-[6px]
-                  border border-black/40
-                  
-                "
-              >
-                <div className="absolute top-[6px] left-1/2 -translate-x-1/2 w-[80px] h-[12px] bg-[#0a0a0a] rounded-b-xl z-30" />
-                <div className="absolute top-[12px] left-1/2 -translate-x-1/2 w-[34px] h-[4px] bg-black/50 rounded-full z-40" />
 
-                <div className="relative rounded-[30px] bg-white overflow-hidden">
-                  <ScrollingImages
-                    images={mobileImages}
-                    height={240}
-                    duration={16}
-                  />
+
+          {/* ================= MISSION SECTION ================= */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={container}
+            className="mb-12 sm:mb-16 md:mb-20"
+          >
+            <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+              <motion.div variants={slideIn} className="md:col-span-2">
+                <h2 className="saas-h2 text-2xl sm:text-3xl text-black mb-4 sm:mb-6">
+                  Our Mission: <span className="text-[#402EE6]">Health is a habit, not a highlight</span>
+                </h2>
+                <div className="space-y-4 text-black/65">
+                  <p>
+                    Migrant workers often face fragmented healthcare due to scattered medical records across countries and institutions. 
+                    This leads to redundant tests, delayed diagnoses, and compromised care quality.
+                  </p>
+                  <p>
+                    KerMedix solves this by creating a unified, secure digital health record that travels with the individual, 
+                    ensuring continuity of care regardless of location or healthcare provider.
+                  </p>
                 </div>
-              </div>
-
+              </motion.div>
+              
+              <motion.div variants={scaleFade} className="bg-[#f7cd14]/10 border border-[#f7cd14]/20 rounded-2xl p-6">
+                <div className="flex items-start gap-3 mb-4">
+                  <Target className="h-6 w-6 text-[#f7cd14]" />
+                  <h3 className="text-lg font-bold text-black">Our Vision</h3>
+                </div>
+                <ul className="space-y-3">
+                  {[
+                    "Global healthcare continuity",
+                    "Zero data fragmentation",
+                    "Universal access for migrants",
+                    "Trust through transparency"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-[#402EE6]" />
+                      <span className="text-black/70 text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             </div>
           </motion.div>
 
 
-          </div>
-
-         {/* ---------------- IMPACT STRIP ---------------- */}
+          {/* ================= CORE PILLARS ================= */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={container}
-            className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-36 border-y border-black/10 py-16"
+            className="mb-12 sm:mb-16 md:mb-20"
           >
-            {[
-              ["From Fragmentation", "Scattered paper-based records"],
-              ["To Continuity", "Unified digital health history"],
-              ["Across Providers", "Care without repetition"],
-              ["With Confidence", "Secure by design"],
-            ].map(([title, subtitle], i) => (
-              <motion.div key={i} variants={fadeUp}>
-                <div className="text-xl sm:text-2xl font-extrabold text-black">
-                  {title}
-                </div>
-                <div className="text-sm text-black/60 mt-2">
-                  {subtitle}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+            <motion.div variants={fadeUp} className="text-center mb-8 sm:mb-10">
+              <div className="inline-flex items-center gap-2 mb-3 px-4 py-2 bg-[#f7cd14]/10 rounded-full">
+                <div className="w-2 h-2 bg-[#0e12ed]" />
+                <span className="text-sm font-semibold text-black">
+                  Core Principles
+                </span>
+              </div>
+              <h2 className="saas-h2 text-2xl sm:text-3xl text-black mb-4">
+                Built on Four Foundational Pillars
+              </h2>
+            </motion.div>
 
-          {/* ---------------- CORE PILLARS ---------------- */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={container}
-            className="mb-36"
-          >
-            <motion.h2 variants={fadeUp} className="saas-h2 text-[28px] mb-16">
-              Designed for continuity, trust, and inclusion.
-            </motion.h2>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {[
                 {
                   icon: HeartPulse,
-                  title: "Continuity of care",
-                  desc: "Persistent medical history across providers.",
+                  title: "Continuity",
+                  description: "Persistent medical history across providers and borders",
+                  color: "bg-[#402EE6]",
                 },
                 {
                   icon: Shield,
-                  title: "Security by default",
-                  desc: "Encryption and access control at every layer.",
+                  title: "Security",
+                  description: "End-to-end encryption with zero-trust architecture",
+                  color: "bg-black",
                 },
                 {
                   icon: Users,
-                  title: "Inclusive access",
-                  desc: "Healthcare continuity for migrant populations.",
+                  title: "Inclusion",
+                  description: "Healthcare continuity for migrant populations",
+                  color: "bg-[#402EE6]",
                 },
                 {
                   icon: Scale,
-                  title: "Institutional trust",
-                  desc: "Transparent records enabling governance.",
+                  title: "Trust",
+                  description: "Transparent, auditable records enabling governance",
+                  color: "bg-black",
                 },
-              ].map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div key={i} variants={scaleFade} whileHover={{ y: -8 }}>
-                    <Card className="bg-white border border-black/10 rounded-2xl hover:shadow-2xl transition">
-                      <div className="h-[4px] w-full bg-[#FFCC33]/70 rounded-t-2xl" />
-                      <CardHeader className="pt-8 space-y-5">
-                        <div className="h-12 w-12 rounded-lg bg-[#FFCC33]/20 flex items-center justify-center">
-                          <Icon className="h-6 w-6 text-black" />
-                        </div>
-                        <CardTitle>{item.title}</CardTitle>
-                        <CardDescription>{item.desc}</CardDescription>
-                      </CardHeader>
-                    </Card>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          {/* ---------------- SDG ALIGNMENT ---------------- */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={container}
-            className="mb-36"
-          >
-            <motion.h2 variants={fadeUp} className="saas-h2 text-[28px] mb-16">
-              Alignment with UN Sustainable Development Goals
-            </motion.h2>
-
-            <div className="grid md:grid-cols-3 gap-10">
-              {[
-                {
-                  title: "SDG 3",
-                  subtitle: "Good Health & Well-Being",
-                  desc: "Improving healthcare continuity and access.",
-                },
-                {
-                  title: "SDG 10",
-                  subtitle: "Reduced Inequalities",
-                  desc: "Equal healthcare access for migrant workers.",
-                },
-                {
-                  title: "SDG 16",
-                  subtitle: "Strong Institutions",
-                  desc: "Transparent and accountable healthcare systems.",
-                },
-              ].map((sdg, i) => (
-                <motion.div key={i} variants={fadeUp}>
-                  <Card className="bg-white border border-black/10 rounded-2xl hover:shadow-xl transition">
-                    <CardHeader>
-                      <div className="text-3xl font-extrabold text-black">
-                        {sdg.title}
+              ].map((item, index) => (
+                <motion.div key={index} variants={scaleFade} whileHover={{ y: -4 }}>
+                  <Card className="bg-[#f5db66] border border-black/10 rounded-xl hover:shadow-lg transition-all duration-300 h-full">
+                    <CardHeader className="p-4 sm:p-6">
+                      <div className={`h-10 w-10 sm:h-12 sm:w-12 ${item.color} rounded-lg flex items-center justify-center mb-3 sm:mb-4`}>
+                        <item.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                       </div>
-                      <div className="text-sm font-semibold text-[#402EE6]">
-                        {sdg.subtitle}
-                      </div>
-                      <p className="text-sm text-black/65">{sdg.desc}</p>
+                      <CardTitle className="text-base sm:text-lg font-bold mb-1 sm:mb-2">{item.title}</CardTitle>
+                      <CardDescription className="text-black/60 text-xs sm:text-sm">
+                        {item.description}
+                      </CardDescription>
                     </CardHeader>
                   </Card>
                 </motion.div>
@@ -413,28 +362,112 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* ---------------- FINAL CTA ---------------- */}
+          {/* ================= TIMELINE SECTION ================= */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            className="text-center border-t border-black/15 pt-24"
+            variants={container}
+            className="mb-12 sm:mb-16 md:mb-20"
           >
-            <h3 className="saas-h2 text-[30px] mb-6">
-              Infrastructure that moves with people.
-            </h3>
-            <p className="saas-body text-black/65 max-w-xl mx-auto mb-12">
-              KerMedix enables long-term healthcare continuity for mobile
-              populations without increasing complexity.
-            </p>
-            <Link
-              to="/gallery"
-              className="inline-flex px-24 py-4 text-sm font-extrabold rounded-md bg-[#402EE6] text-white shadow-xl hover:bg-[#402EE6]/90 transition"
-            >
-              View Gallery
-            </Link>
+            <motion.div variants={fadeUp} className="text-center mb-8 sm:mb-10">
+              <h2 className="saas-h2 text-2xl sm:text-3xl text-black mb-4">
+                Our Journey to Impact
+              </h2>
+              <p className="text-black/60 max-w-2xl mx-auto text-sm sm:text-base">
+                From concept to trusted healthcare infrastructure
+              </p>
+            </motion.div>
+
+            <div className="max-w-3xl mx-auto">
+              {[
+                {
+                  year: "2025",
+                  title: "Research & Discovery",
+                  description: "Identified fragmented healthcare access as a major challenge faced by migrant workers in Kerala."
+                },
+                {
+                  year: "2025",
+                  title: "Platform Development",
+                  description: "Designed and built the core digital health infrastructure, focusing on secure records, scalability, and multilingual accessibility."
+                },
+                {
+                  year: "2026",
+                  title: "Prototype Pilot Launch",
+                  description: "Developed and tested early platform prototypes through user research, feedback loops, and real-world healthcare workflows."
+                },
+                {
+                  year: "2026",
+                  title: "Product Readiness & Expansion Planning",
+                  description: "Strengthened system reliability, refined features, and prepared the platform for pilot deployment and ecosystem integrations.",
+                  isLast: true
+                }
+              ].map((item, index) => (
+                <TimelineItem key={index} {...item} />
+              ))}
+            </div>
           </motion.div>
 
+          {/* ================= SDG ALIGNMENT ================= */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={container}
+            className="mb-12 sm:mb-16"
+          >
+            <motion.div variants={fadeUp} className="text-center mb-8 sm:mb-10">
+              <div className="inline-flex items-center gap-2 mb-3 px-4 py-2 bg-black/5 rounded-full">
+                <Globe className="h-4 w-4 text-black" />
+                <span className="text-sm font-semibold text-black">
+                  Global Impact
+                </span>
+              </div>
+              <h2 className="saas-h2 text-2xl sm:text-3xl text-black mb-4">
+                Aligned with UN Sustainable Development Goals
+              </h2>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
+              {[
+                {
+                  number: "SDG 3",
+                  title: "Good Health & Well-Being",
+                  description: "Improving healthcare continuity and access for all",
+                  
+                },
+                {
+                  number: "SDG 10",
+                  title: "Reduced Inequalities",
+                  description: "Equal healthcare access for migrant workers",
+                  
+                },
+                {
+                  number: "SDG 16",
+                  title: "Strong Institutions",
+                  description: "Transparent and accountable healthcare systems",
+                  
+                },
+              ].map((sdg, index) => (
+                <motion.div key={index} variants={scaleFade}>
+                  <Card className="bg-[#d4ff47] border border-black/10 rounded-xl hover:shadow-lg transition-all duration-300 h-full">
+                    <CardHeader className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="text-2xl font-black text-black">{sdg.number}</div>
+                       
+                      </div>
+                      <CardTitle className="text-lg font-bold mb-2">{sdg.title}</CardTitle>
+                      <CardDescription className="text-black/60 text-sm">
+                        {sdg.description}
+                      </CardDescription>
+                    </CardHeader>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          
         </div>
       </section>
     </>
