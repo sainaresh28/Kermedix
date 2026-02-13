@@ -461,11 +461,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="none"
             >
-              <defs>
-                <filter id="navShadow">
-                  <feDropShadow dx="0" dy="-2" stdDeviation="8" floodOpacity="0.3"/>
-                </filter>
-              </defs>
+
               <path
                 d="M 0,30 
                    Q 0,15 15,15 
@@ -480,7 +476,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                    L 0,90
                    Z"
                 fill="#ffffff"
-            
+                
               />
             </svg>
 
