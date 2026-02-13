@@ -480,7 +480,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                    L 0,90
                    Z"
                 fill="#ffffff"
-                filter="url(#navShadow)"
+            
               />
             </svg>
 
