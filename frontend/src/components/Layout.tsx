@@ -479,7 +479,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                    L 400,90
                    L 0,90
                    Z"
-                fill="#2D2D2D"
+                fill="#ffffff"
                 filter="url(#navShadow)"
               />
             </svg>
@@ -491,7 +491,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 onClick={() => handleBottomNavClick('downloads')}
                 active={activeSection === 'downloads'}
                 icon={
-                  <svg className="w-7 h-7" fill="none" stroke="#FF6B35" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <svg className="w-7 h-7" fill="none" stroke="#059669" viewBox="0 0 24 24" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                   </svg>
                 }
@@ -501,7 +501,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 onClick={() => handleBottomNavClick('miscellaneous')}
                 active={activeSection === 'miscellaneous'}
                 icon={
-                  <svg className="w-7 h-7" fill="none" stroke="#FF6B35" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <svg className="w-7 h-7" fill="none" stroke="#059669" viewBox="0 0 24 24" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                   </svg>
                 }
@@ -513,7 +513,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 className="flex flex-col items-center transition-all -mt-12"
                 whileTap={{ scale: 0.92 }}
               >
-                <div className="relative w-[70px] h-[70px] rounded-full bg-[#f3541f] flex items-center justify-center shadow-2xl border-4 border-[#2D2D2D]">
+                <div className="relative w-[70px] h-[70px] rounded-full bg-[#059669] flex items-center justify-center shadow-2xl border-4 border-[#2d2d2d]">
                   <svg className="w-9 h-9" fill="none" stroke="white" viewBox="0 0 24 24" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                   </svg>
@@ -524,7 +524,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 onClick={() => handleBottomNavClick('services')}
                 active={activeSection === 'services'}
                 icon={
-                   <svg className="w-7 h-7" fill="none" stroke="#FF6B35" viewBox="0 0 24 24" strokeWidth={2.5}>
+                   <svg className="w-7 h-7" fill="none" stroke="#059669" viewBox="0 0 24 24" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                   </svg>
 
@@ -535,7 +535,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 onClick={() => handleBottomNavClick('user-access')}
                 active={activeSection === 'user-access'}
                 icon={
-                  <svg className="w-7 h-7" fill="none" stroke="#FF6B35" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <svg className="w-7 h-7" fill="none" stroke="#059669" viewBox="0 0 24 24" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 }
